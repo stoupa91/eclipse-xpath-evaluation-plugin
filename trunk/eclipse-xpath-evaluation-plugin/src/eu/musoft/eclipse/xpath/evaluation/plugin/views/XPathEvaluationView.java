@@ -27,10 +27,20 @@
  */
 package eu.musoft.eclipse.xpath.evaluation.plugin.views;
 
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
 
 public class XPathEvaluationView extends ViewPart {
+
+	private Combo query;
+	private Button execute;
+	private Text result;
 
 	/**
 	 * The ID of the view as specified by the extension.
@@ -48,7 +58,17 @@ public class XPathEvaluationView extends ViewPart {
 	 * it.
 	 */
 	public void createPartControl(Composite parent) {
+		GridLayout grid = new GridLayout(2, false);
+		parent.setLayout(grid);
 
+		query = new Combo(parent, SWT.DROP_DOWN);
+		query.setLayoutData(new GridData(SWT.FILL, 0, true, false));
+
+		execute = new Button(parent, 0);
+		execute.setText("Run");
+
+		result = new Text(parent, SWT.MULTI);
+		result.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 	}
 
 	/**
