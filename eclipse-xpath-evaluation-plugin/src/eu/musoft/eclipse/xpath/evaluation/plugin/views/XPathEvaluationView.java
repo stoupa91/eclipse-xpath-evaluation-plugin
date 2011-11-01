@@ -72,9 +72,9 @@ public class XPathEvaluationView extends ViewPart {
 	}
 
 	/**
-	 * Passing the focus request to the viewer's control.
+	 * Passing the focus request to the query combo.
 	 */
 	public void setFocus() {
-		// viewer.getControl().setFocus();
+		query.setFocus();
 	}
 }
