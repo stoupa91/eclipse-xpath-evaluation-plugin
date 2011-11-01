@@ -73,7 +73,7 @@ public class XPathEvaluationView extends ViewPart {
 		execute.setImage(new Image(PlatformUI.getWorkbench().getDisplay(), Activator.getImageDescriptor("icons/Apply.png").getImageData()));
 		execute.setToolTipText("Run query");
 
-		result = new Text(parent, SWT.MULTI);
+		result = new Text(parent, SWT.MULTI | SWT.READ_ONLY);
 		result.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 	}
 
