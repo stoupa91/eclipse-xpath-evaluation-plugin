@@ -28,13 +28,17 @@
 package eu.musoft.eclipse.xpath.evaluation.plugin.views;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
+
+import eu.musoft.eclipse.xpath.evaluation.plugin.Activator;
 
 public class XPathEvaluationView extends ViewPart {
 
@@ -63,9 +67,11 @@ public class XPathEvaluationView extends ViewPart {
 
 		query = new Combo(parent, SWT.DROP_DOWN);
 		query.setLayoutData(new GridData(SWT.FILL, 0, true, false));
+		query.setToolTipText("Insert valid XPath query");
 
 		execute = new Button(parent, 0);
-		execute.setText("Run");
+		execute.setImage(new Image(PlatformUI.getWorkbench().getDisplay(), Activator.getImageDescriptor("icons/Apply.png").getImageData()));
+		execute.setToolTipText("Run query");
 
 		result = new Text(parent, SWT.MULTI);
 		result.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
