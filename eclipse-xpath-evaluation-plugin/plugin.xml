@@ -6,7 +6,7 @@
          point="org.eclipse.ui.views">
       <view
             name="XPath"
-            icon="icons/sample.gif"
+            icon="icons/Diagram.png"
             category="org.eclipse.wst.xml"
             class="eu.musoft.eclipse.xpath.evaluation.plugin.views.XPathEvaluationView"
             id="eu.musoft.eclipse.xpath.evaluation.plugin.views.XPathEvaluationView">
