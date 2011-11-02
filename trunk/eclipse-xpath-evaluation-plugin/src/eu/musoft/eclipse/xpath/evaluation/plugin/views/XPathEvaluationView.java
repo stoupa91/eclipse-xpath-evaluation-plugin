@@ -28,6 +28,7 @@
 package eu.musoft.eclipse.xpath.evaluation.plugin.views;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -39,6 +40,8 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 
 import eu.musoft.eclipse.xpath.evaluation.plugin.Activator;
+import eu.musoft.eclipse.xpath.evaluation.plugin.views.listeners.EvaluationTrigger;
+import eu.musoft.eclipse.xpath.evaluation.plugin.views.listeners.QueryComboKeyHandler;
 
 public class XPathEvaluationView extends ViewPart {
 
@@ -62,16 +65,21 @@ public class XPathEvaluationView extends ViewPart {
 	 * it.
 	 */
 	public void createPartControl(Composite parent) {
+		SelectionListener evaluationTrigger = new EvaluationTrigger();
+
 		GridLayout grid = new GridLayout(2, false);
 		parent.setLayout(grid);
 
 		query = new Combo(parent, SWT.DROP_DOWN);
 		query.setLayoutData(new GridData(SWT.FILL, 0, true, false));
 		query.setToolTipText("Insert valid XPath query");
+		query.addKeyListener(new QueryComboKeyHandler());
+		query.addSelectionListener(evaluationTrigger);
 
 		execute = new Button(parent, 0);
 		execute.setImage(new Image(PlatformUI.getWorkbench().getDisplay(), Activator.getImageDescriptor("icons/Apply.png").getImageData()));
 		execute.setToolTipText("Run query");
+		execute.addSelectionListener(evaluationTrigger);
 
 		result = new Text(parent, SWT.MULTI | SWT.READ_ONLY);
 		result.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
