@@ -36,6 +36,10 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 
@@ -91,4 +95,30 @@ public class XPathEvaluationView extends ViewPart {
 	public void setFocus() {
 		query.setFocus();
 	}
+
+	public static String getActiveEditorContent() throws GUIException {
+		IEditorPart editor = getActiveEditor();
+		return null;
+	}
+
+	private static IEditorPart getActiveEditor() throws GUIException {
+		IWorkbench workbench = PlatformUI.getWorkbench();
+		if (workbench == null)
+			throw new GUIException("No workbench!");
+
+		IWorkbenchWindow window = workbench.getActiveWorkbenchWindow();
+		if (window == null)
+			throw new GUIException("No active workbench window!");
+
+		IWorkbenchPage page = window.getActivePage();
+		if (page == null)
+			throw new GUIException("No active page!");
+
+		IEditorPart editor = page.getActiveEditor();
+		if (editor == null)
+			throw new GUIException("No active editor!");
+
+		return editor;
+	}
+
 }
