@@ -27,6 +27,7 @@
  */
 package eu.musoft.eclipse.xpath.evaluation.plugin.views;
 
+import org.eclipse.jface.text.IDocument;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
@@ -42,6 +43,7 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
+import org.eclipse.ui.texteditor.ITextEditor;
 
 import eu.musoft.eclipse.xpath.evaluation.plugin.Activator;
 import eu.musoft.eclipse.xpath.evaluation.plugin.views.listeners.EvaluationTrigger;
@@ -74,17 +76,20 @@ public class XPathEvaluationView extends ViewPart {
 		GridLayout grid = new GridLayout(2, false);
 		parent.setLayout(grid);
 
+		// XPath query combo box
 		query = new Combo(parent, SWT.DROP_DOWN);
 		query.setLayoutData(new GridData(SWT.FILL, 0, true, false));
 		query.setToolTipText("Insert valid XPath query");
 		query.addKeyListener(new QueryComboKeyHandler());
 		query.addSelectionListener(evaluationTrigger);
 
+		// Execute query button
 		execute = new Button(parent, 0);
 		execute.setImage(new Image(PlatformUI.getWorkbench().getDisplay(), Activator.getImageDescriptor("icons/Apply.png").getImageData()));
 		execute.setToolTipText("Run query");
 		execute.addSelectionListener(evaluationTrigger);
 
+		// Result text area
 		result = new Text(parent, SWT.MULTI | SWT.READ_ONLY);
 		result.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 	}
@@ -96,9 +101,21 @@ public class XPathEvaluationView extends ViewPart {
 		query.setFocus();
 	}
 
-	public static String getActiveEditorContent() throws GUIException {
-		IEditorPart editor = getActiveEditor();
-		return null;
+	/**
+	 * Gets the content of active text editor.
+	 * 
+	 * @return active text editor content as a string
+	 * @throws GUIException
+	 *           is thrown if there is either no workbench or no active workbench
+	 *           window or no active page or no active editor or the editor is not
+	 *           a text editor
+	 */
+	public static String getActiveTextEditorContent() throws GUIException {
+		ITextEditor editor = getActiveTextEditor();
+
+		IDocument doc = editor.getDocumentProvider().getDocument(editor.getEditorInput());
+		String content = doc.get();
+		return (content != null) ? content : "";
 	}
 
 	private static IEditorPart getActiveEditor() throws GUIException {
@@ -119,6 +136,14 @@ public class XPathEvaluationView extends ViewPart {
 			throw new GUIException("No active editor!");
 
 		return editor;
+	}
+
+	private static ITextEditor getActiveTextEditor() throws GUIException {
+		ITextEditor textEditor = (ITextEditor) getActiveEditor().getAdapter(ITextEditor.class);
+		if (textEditor == null)
+			throw new GUIException("No text editor!");
+
+		return textEditor;
 	}
 
 }

@@ -30,6 +30,10 @@ package eu.musoft.eclipse.xpath.evaluation.plugin.views.listeners;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 
+/**
+ * This class takes care of triggering the evaluation process by registering it
+ * on XPath query combo box and execute queyr button.
+ */
 public class EvaluationTrigger implements SelectionListener {
 
 	/*

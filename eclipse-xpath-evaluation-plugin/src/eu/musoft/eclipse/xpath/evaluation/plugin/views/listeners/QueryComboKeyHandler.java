@@ -32,6 +32,9 @@ import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.widgets.Combo;
 
+/**
+ * This class handles the key events on XPath query combo box.
+ */
 public class QueryComboKeyHandler extends KeyAdapter {
 
 	/*
