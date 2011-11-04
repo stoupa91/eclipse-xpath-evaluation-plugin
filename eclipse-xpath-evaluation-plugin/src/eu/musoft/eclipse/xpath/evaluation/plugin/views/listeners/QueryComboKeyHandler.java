@@ -46,10 +46,11 @@ public class QueryComboKeyHandler extends KeyAdapter {
 	 */
 	public void keyPressed(KeyEvent e) {
 		Object source = e.getSource();
-		if (source instanceof Combo) {
+		if (source instanceof Combo) { // instance of query combo
+			Combo query = (Combo) source;
 			switch (e.keyCode) {
 				case SWT.ARROW_DOWN:
-					System.out.println("Arrow down pressed");
+					query.setListVisible(true);
 					break;
 			}
 		}
