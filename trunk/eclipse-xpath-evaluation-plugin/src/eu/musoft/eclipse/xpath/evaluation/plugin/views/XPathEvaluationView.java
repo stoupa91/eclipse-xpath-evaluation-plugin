@@ -86,7 +86,7 @@ public class XPathEvaluationView extends ViewPart {
 		execute.setToolTipText("Run query");
 
 		// Result text area
-		result = new Text(parent, SWT.MULTI | SWT.READ_ONLY);
+		result = new Text(parent, SWT.MULTI | SWT.READ_ONLY | SWT.H_SCROLL | SWT.V_SCROLL);
 		result.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 
 		// add the evaluation trigger listener
