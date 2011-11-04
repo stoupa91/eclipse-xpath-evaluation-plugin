@@ -71,8 +71,6 @@ public class XPathEvaluationView extends ViewPart {
 	 * it.
 	 */
 	public void createPartControl(Composite parent) {
-		SelectionListener evaluationTrigger = new EvaluationTrigger();
-
 		GridLayout grid = new GridLayout(2, false);
 		parent.setLayout(grid);
 
@@ -81,17 +79,20 @@ public class XPathEvaluationView extends ViewPart {
 		query.setLayoutData(new GridData(SWT.FILL, 0, true, false));
 		query.setToolTipText("Insert valid XPath query");
 		query.addKeyListener(new QueryComboKeyHandler());
-		query.addSelectionListener(evaluationTrigger);
 
 		// Execute query button
 		execute = new Button(parent, 0);
 		execute.setImage(new Image(PlatformUI.getWorkbench().getDisplay(), Activator.getImageDescriptor("icons/Apply.png").getImageData()));
 		execute.setToolTipText("Run query");
-		execute.addSelectionListener(evaluationTrigger);
 
 		// Result text area
 		result = new Text(parent, SWT.MULTI | SWT.READ_ONLY);
 		result.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
+
+		// add the evaluation trigger listener
+		SelectionListener evaluationTrigger = new EvaluationTrigger(query, result);
+		query.addSelectionListener(evaluationTrigger);
+		execute.addSelectionListener(evaluationTrigger);
 	}
 
 	/**

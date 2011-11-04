@@ -30,71 +30,67 @@ package eu.musoft.eclipse.xpath.evaluation.plugin.views.listeners;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.widgets.Combo;
+import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.progress.UIJob;
 
 import eu.musoft.eclipse.xpath.evaluation.plugin.Activator;
-import eu.musoft.eclipse.xpath.evaluation.plugin.views.GUIException;
-import eu.musoft.eclipse.xpath.evaluation.plugin.views.XPathEvaluationView;
+import eu.musoft.eclipse.xpath.evaluation.plugin.XPathEvaluator;
 
 /**
- * This class takes care of triggering the evaluation process by registering it
- * on XPath query combo box and execute queyr button.
+ * This class performs actual XPath evaluation. The task will run in a new
+ * thread while invoking the 'schedule()' method on this class instance.
  */
-public class EvaluationTrigger implements SelectionListener {
+class EvaluationJob extends Job {
 
-	private Combo query;
 	private Text result;
 
-	public EvaluationTrigger(Combo query, Text result) {
-		this.query = query;
+	private String xpath;
+	private String xml;
+
+	/**
+	 * Constructor.
+	 * 
+	 * @param xpath
+	 *          XPath to be evaluated
+	 * @param xml
+	 *          XML to evaluate the XPath expression on
+	 * @param result
+	 *          evaluated subset of the original XML
+	 */
+	public EvaluationJob(final String xpath, final String xml, final Text result) {
+		super("XPath evaluation");
+
 		this.result = result;
+		this.xpath = xpath;
+		this.xml = xml;
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.eclipse.swt.events.SelectionListener#widgetSelected(org.eclipse.swt
-	 * .events.SelectionEvent)
+	 * org.eclipse.core.runtime.jobs.Job#run(org.eclipse.core.runtime.IProgressMonitor
+	 * )
 	 */
-	public void widgetSelected(SelectionEvent e) {
-		evaluate();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.swt.events.SelectionListener#widgetDefaultSelected(org.eclipse
-	 * .swt.events.SelectionEvent)
-	 */
-	public void widgetDefaultSelected(SelectionEvent e) {
-		evaluate();
-	}
-
-	private void evaluate() {
-		// load input data used in evaluation process
-		String xpath = query.getText();
-		String xml = null;
+	@Override
+	protected IStatus run(IProgressMonitor monitor) {
 		try {
-			xml = XPathEvaluationView.getActiveTextEditorContent();
-		} catch (final GUIException e) {
-			new UIJob("XPath evaluation") {
-				@Override
-				public IStatus runInUIThread(IProgressMonitor monitor) {
-					Status errorStatus = new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getMessage());
-					return errorStatus;
-				}
-			}.schedule();
-
-			return;
+			String evaluatedResult = XPathEvaluator.evaluate(xpath, xml);
+			outputResult(evaluatedResult);
+		} catch (Exception e) {
+			Status errorStatus = new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getMessage(), e.getCause());
+			return errorStatus;
 		}
 
-		// execute the XPath evaluation (new thread will be created!)
-		new EvaluationJob(xpath, xml, result).schedule();
+		return Status.OK_STATUS;
+	}
+
+	private void outputResult(final String evaluatedResult) {
+		Display.getDefault().syncExec(new Runnable() {
+			public void run() {
+				result.setText(evaluatedResult);
+			}
+		});
 	}
 }
