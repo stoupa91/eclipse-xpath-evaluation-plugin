@@ -1,0 +1,11 @@
+#summary Plug-in installation.
+#labels Phase-Deploy
+
+= Introduction =
+
+This page describes the installation process of the plug-in.
+
+
+= Details =
+
+Download provided zip file with the plug-in implementation (contains both, binary + source code) and extract it into the home directory of your eclipse installation.
