@@ -32,6 +32,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.progress.UIJob;
@@ -62,7 +64,10 @@ public class EvaluationTrigger implements SelectionListener {
 	 * .events.SelectionEvent)
 	 */
 	public void widgetSelected(SelectionEvent e) {
-		evaluate();
+		// widget selected should be triggered only by Button widget
+		if (e.getSource() instanceof Button) {
+			evaluate(e);
+		}
 	}
 
 	/*
@@ -73,10 +78,13 @@ public class EvaluationTrigger implements SelectionListener {
 	 * .swt.events.SelectionEvent)
 	 */
 	public void widgetDefaultSelected(SelectionEvent e) {
-		evaluate();
+		// widget default selected should be triggered only by Combo widget
+		if (e.getSource() instanceof Combo) {
+			evaluate(e);
+		}
 	}
 
-	private void evaluate() {
+	private void evaluate(SelectionEvent event) {
 		// load input data used in evaluation process
 		String xpath = query.getText();
 		String xml = null;
@@ -96,5 +104,12 @@ public class EvaluationTrigger implements SelectionListener {
 
 		// execute the XPath evaluation (new thread will be created!)
 		new EvaluationJob(xpath, xml, result).schedule();
+
+		// update the newly entered XPath to the history
+		new QueryHistoryManager(query).update();
+
+		// set the caret at the end of query text string
+		int textLength = query.getText().length();
+		query.setSelection(new Point(textLength, textLength));
 	}
 }
