@@ -8,4 +8,5 @@ This page describes the installation process of the plug-in.
 
 = Details =
 
-Download provided zip file with the plug-in implementation (contains both, binary + source code) and extract it into the home directory of your eclipse installation.
+  * Download provided zip file with the plug-in implementation (contains both, binary + source code) and extract it into the home directory of your eclipse installation.
+  * Go to *Window -> Show View -> Other -> XML -> XPath* whereas new view, for executing the XPath expressions, will be shown.
