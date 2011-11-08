@@ -41,6 +41,10 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
    </license>
 
+   <url>
+      <update label="Eclipse XPath evaluation - update site" url="http://eclipse-xpath-evaluation-plugin.googlecode.com/files/"/>
+   </url>
+
    <plugin
          id="eu.musoft.eclipse.xpath.evaluation.plugin"
          download-size="0"

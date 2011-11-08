@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
+   <description name="Eclipse XPath evaluation - update site" url="http://eclipse-xpath-evaluation-plugin.googlecode.com/files/">
+      Update site for Eclipse XPath evaluation
+   </description>
    <feature url="features/eu.musoft.eclipse.xpath.evaluation.plugin_1.0.0.vqualifier.jar" id="eu.musoft.eclipse.xpath.evaluation.plugin" version="1.0.0.vqualifier"/>
 </site>
