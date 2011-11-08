@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/eu.musoft.eclipse.xpath.evaluation.plugin.feature_1.0.0.vqualifier.jar" id="eu.musoft.eclipse.xpath.evaluation.plugin.feature" version="1.0.0.vqualifier"/>
+</site>
