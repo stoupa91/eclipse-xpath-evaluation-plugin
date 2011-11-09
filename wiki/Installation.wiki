@@ -6,8 +6,19 @@
 This page describes two installation processes of the plug-in. You can choose either one which suits you.
 
 
-= Installation from within Eclipse =
+= Automatic installation from within Eclipse Marketplace =
+  * Go to Help -> Eclipse Marketplace
+  * Type into the search box "xpath", select "Tools" in the market combo box and "XML" in the categories combo box and click "Go"
+  * One of the results should appear "Eclipse XPath evaluation plugin", click on "Install" button next to it
+  * Click "Next"
+  * Accept license
+  * Click "Finish"
+  * You might be warned that you are installing unsigned content. If you are OK with it, click "OK" to proceed.
+  * At the end of installation process you will be asked to restart Eclipse, click on "Restart now"
+  * Go to Window -> Show View -> Other -> XML -> XPath whereas new view, for executing the XPath expressions, will be shown
 
+
+= Manual installation from within Eclipse =
   * Go to Help -> Install New Software
   * Add repository ("Add.." button)
   * Fill in Name as "XPath" and Location as "http://eclipse-xpath-evaluation-plugin.googlecode.com/svn/trunk/eclipse-xpath-evaluation-plugin-update-site/"
@@ -21,7 +32,6 @@ This page describes two installation processes of the plug-in. You can choose ei
 
 
 = Manual installation =
-
   * Download provided zip file with the plug-in implementation (contains both, binary + source code)
   * Extract the zip file into the home directory of your eclipse installation
   * Launch eclipse IDE
