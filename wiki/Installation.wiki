@@ -3,34 +3,32 @@
 
 = Introduction =
 
-This page describes four installation processes of the plug-in. You can choose either one which suits you best.
+This page describes four installation processes of the plug-in. You can choose either one which suits you and your Eclipse version best.
 
 
-= Automatic installation - Drag & Drop =
+= Automatic installation - Drag & Drop (Indigo) =
   * Drag and drop following icon into a running Eclipse Indigo workspace <a href='http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=148833' title='Drag and drop into a running Eclipse Indigo workspace to install Eclipse XPath evaluation plugin'><img src='http://marketplace.eclipse.org/misc/installbutton.png'/></a>
   * Click "Next"
   * Accept license
   * Click "Finish"
   * You might be warned that you are installing unsigned content. If you are OK with it, click "OK" to proceed.
   * At the end of installation process you will be asked to restart Eclipse, click on "Restart now"
-  * Go to Window -> Show View -> Other -> XML -> XPath whereas new view, for executing the XPath expressions, will be shown
 
 
 
 
-= Automatic installation from within Eclipse Marketplace =
+= Automatic installation from within Eclipse Marketplace (Helios, Indigo) =
   * Go to Help -> Eclipse Marketplace
-  * Type into the search box "xpath", select "Tools" in the market combo box and "XML" in the categories combo box and click "Go"
+  * Type into the search box "xpath", select "Tools" in the market combo box and/or "XML" in the categories combo box to narrow down the results and click "Go"
   * One of the results should appear "Eclipse XPath evaluation plugin", click on "Install" button next to it
   * Click "Next"
   * Accept license
   * Click "Finish"
   * You might be warned that you are installing unsigned content. If you are OK with it, click "OK" to proceed.
   * At the end of installation process you will be asked to restart Eclipse, click on "Restart now"
-  * Go to Window -> Show View -> Other -> XML -> XPath whereas new view, for executing the XPath expressions, will be shown
 
 
-= Manual installation from within Eclipse =
+= Manual installation from within Eclipse (Galileo, Helios, Indigo) =
   * Go to Help -> Install New Software
   * Add repository ("Add.." button)
   * Fill in Name as "XPath" and Location as "http://eclipse-xpath-evaluation-plugin.googlecode.com/svn/trunk/eclipse-xpath-evaluation-plugin-update-site/"
@@ -40,11 +38,21 @@ This page describes four installation processes of the plug-in. You can choose e
   * Click "Finish"
   * You might be warned that you are installing unsigned content. If you are OK with it, click "OK" to proceed.
   * At the end of installation process you will be asked to restart Eclipse, click on "Restart now"
-  * Go to Window -> Show View -> Other -> XML -> XPath whereas new view, for executing the XPath expressions, will be shown
 
 
-= Manual installation =
-  * <a href='http://code.google.com/p/eclipse-xpath-evaluation-plugin/downloads/list'>Download provided zip file</a> (choose the latest version) with the plug-in implementation (contains both, binary + source code)
+= Manual installation from within Eclipse (Ganymede) =
+  * Go to Help -> Software Updates
+  * Click "Add Site.."
+  * Fill in Location as "http://eclipse-xpath-evaluation-plugin.googlecode.com/svn/trunk/eclipse-xpath-evaluation-plugin-update-site/"
+  * Select the loaded plug-in in "Uncategorized" section
+  * Click "Install"
+  * Accept license
+  * Click "Finish"
+  * You might be warned that you are installing unsigned content. If you are OK with it, click "OK" to proceed.
+  * At the end of installation process you will be asked to restart Eclipse, click on "Restart now"
+
+
+= Manual installation (Ganymede, Galileo, Helios) =
+  * <a href='http://code.google.com/p/eclipse-xpath-evaluation-plugin/downloads/list'>Download provided zip file</a> with the most recent version of the plug-in implementation
   * Extract the zip file into the home directory of your eclipse installation
-  * Launch eclipse IDE
-  * Go to Window -> Show View -> Other -> XML -> XPath whereas new view, for executing the XPath expressions, will be shown
+  * Launch Eclipse IDE
