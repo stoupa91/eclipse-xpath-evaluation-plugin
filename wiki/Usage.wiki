@@ -6,7 +6,15 @@
 This page describes the how to use the plug-in.
 
 
-= Details =
+= Open XPath view (Indigo) =
+  * Go to Window -> Show View -> Other -> XML -> XPath, whereas new view, for executing the XPath expressions, will be shown
+
+
+= Open XPath view (Ganymede, Galileo, Helios) =
+  * Go to Window -> Show View -> Other -> Other -> XPath, whereas new view, for executing the XPath expressions, will be shown
+
+
+= XPath view usage =
 
 Following steps describe the typical plug-in usage:
   * Open an XML file in (any) text editor within your eclipse IDE
