@@ -81,7 +81,7 @@ public class XPathEvaluationView extends ViewPart {
 		query.addKeyListener(new QueryComboKeyHandler());
 
 		// Execute query button
-		execute = new Button(parent, 0);
+		execute = new Button(parent, SWT.PUSH);
 		execute.setImage(new Image(PlatformUI.getWorkbench().getDisplay(), Activator.getImageDescriptor("icons/Apply.png").getImageData()));
 		execute.setToolTipText("Run query");
 
