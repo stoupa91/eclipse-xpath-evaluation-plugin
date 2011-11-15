@@ -27,6 +27,11 @@
  */
 package eu.musoft.eclipse.xpath.evaluation.plugin;
 
+import java.io.IOException;
+import java.io.InputStream;
+
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -92,4 +97,23 @@ public class Activator extends AbstractUIPlugin {
 	public static ImageDescriptor getImageDescriptor(String path) {
 		return imageDescriptorFromPlugin(PLUGIN_ID, path);
 	}
+
+	/**
+	 * Loads a file from the bundle/plug-in.
+	 * 
+	 * @param path
+	 *          relative path to the file
+	 * @return input stream of the required file
+	 * @throws IOException
+	 *           is thrown, if I/O exception occurs
+	 * @throws IllegalArgumentException
+	 *           is thrown, if path is null or empty string (after being trimmed)
+	 */
+	public static InputStream loadFile(String path) throws IOException {
+		if (path == null || path.trim().length() == 0)
+			throw new IllegalArgumentException("path can not be null");
+
+		return FileLocator.openStream(Activator.getDefault().getBundle(), new Path(path), false);
+	}
+
 }
