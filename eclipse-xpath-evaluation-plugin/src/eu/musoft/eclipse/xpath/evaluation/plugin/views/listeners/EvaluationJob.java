@@ -47,6 +47,7 @@ class EvaluationJob extends Job {
 
 	private String xpath;
 	private String xml;
+	private boolean isPrettyPrint;
 
 	/**
 	 * Constructor.
@@ -58,12 +59,13 @@ class EvaluationJob extends Job {
 	 * @param result
 	 *          evaluated subset of the original XML
 	 */
-	public EvaluationJob(final String xpath, final String xml, final Text result) {
+	public EvaluationJob(final String xpath, final String xml, final boolean isPrettyPrint, final Text result) {
 		super("XPath evaluation");
 
 		this.result = result;
 		this.xpath = xpath;
 		this.xml = xml;
+		this.isPrettyPrint = isPrettyPrint;
 	}
 
 	/*
@@ -76,7 +78,7 @@ class EvaluationJob extends Job {
 	@Override
 	protected IStatus run(IProgressMonitor monitor) {
 		try {
-			String evaluatedResult = XPathEvaluator.evaluate(xpath, xml);
+			String evaluatedResult = XPathEvaluator.evaluate(xpath, xml, isPrettyPrint);
 			outputResult(evaluatedResult);
 		} catch (Exception e) {
 			Status errorStatus = new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getMessage(), e.getCause());

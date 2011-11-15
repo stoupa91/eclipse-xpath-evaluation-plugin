@@ -53,6 +53,7 @@ public class XPathEvaluationView extends ViewPart {
 
 	private Combo query;
 	private Button execute;
+	private Button prettyPrint;
 	private Text result;
 
 	/**
@@ -71,7 +72,7 @@ public class XPathEvaluationView extends ViewPart {
 	 * it.
 	 */
 	public void createPartControl(Composite parent) {
-		GridLayout grid = new GridLayout(2, false);
+		GridLayout grid = new GridLayout(3, false);
 		parent.setLayout(grid);
 
 		// XPath query combo box
@@ -85,12 +86,17 @@ public class XPathEvaluationView extends ViewPart {
 		execute.setImage(new Image(PlatformUI.getWorkbench().getDisplay(), Activator.getImageDescriptor("icons/Apply.png").getImageData()));
 		execute.setToolTipText("Run query");
 
+		// Pretty print button
+		prettyPrint = new Button(parent, SWT.CHECK);
+		prettyPrint.setSelection(true); // pretty print enabled by default
+		prettyPrint.setToolTipText("Pretty print");
+
 		// Result text area
 		result = new Text(parent, SWT.MULTI | SWT.READ_ONLY | SWT.H_SCROLL | SWT.V_SCROLL);
-		result.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
+		result.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
 
 		// add the evaluation trigger listener
-		SelectionListener evaluationTrigger = new EvaluationTrigger(query, result);
+		SelectionListener evaluationTrigger = new EvaluationTrigger(query, prettyPrint, result);
 		query.addSelectionListener(evaluationTrigger);
 		execute.addSelectionListener(evaluationTrigger);
 	}

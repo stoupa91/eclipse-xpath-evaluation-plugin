@@ -49,10 +49,12 @@ import eu.musoft.eclipse.xpath.evaluation.plugin.views.XPathEvaluationView;
 public class EvaluationTrigger implements SelectionListener {
 
 	private Combo query;
+	private Button prettyPrint;
 	private Text result;
 
-	public EvaluationTrigger(Combo query, Text result) {
+	public EvaluationTrigger(Combo query, Button prettyPrint, Text result) {
 		this.query = query;
+		this.prettyPrint = prettyPrint;
 		this.result = result;
 	}
 
@@ -103,7 +105,7 @@ public class EvaluationTrigger implements SelectionListener {
 		}
 
 		// execute the XPath evaluation (new thread will be created!)
-		new EvaluationJob(xpath, xml, result).schedule();
+		new EvaluationJob(xpath, xml, prettyPrint.getSelection(), result).schedule();
 
 		// update the newly entered XPath to the history
 		new QueryHistoryManager(query).update();
