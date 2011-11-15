@@ -75,6 +75,8 @@ public class XPathEvaluator {
 	 *          string representation of XPath expression
 	 * @param xml
 	 *          string representation of XML document
+	 * @param isPrettyPrint
+	 *          indicates whether pretty print is enabled for current evaluation
 	 * @return a subset of elements from original XML document which satisfy
 	 *         provided XPath expression
 	 * @throws Exception
@@ -82,7 +84,7 @@ public class XPathEvaluator {
 	 *           could not be parsed properly or the XPath evaluation against the
 	 *           XML document fails
 	 */
-	public static String evaluate(String xpath, String xml) throws Exception {
+	public static String evaluate(String xpath, String xml, boolean isPrettyPrint) throws Exception {
 		if (xpath == null)
 			throw new IllegalArgumentException("xpath can not be null");
 		if (xml == null)
@@ -92,7 +94,7 @@ public class XPathEvaluator {
 		XdmNode xdm = buildXdm(xml);
 		XdmValue xpathResult = evaluate(exec, xdm);
 
-		return transformResult(xpathResult, false);
+		return transformResult(xpathResult, isPrettyPrint);
 	}
 
 	private static XsltExecutable getXsltRuntime() {
