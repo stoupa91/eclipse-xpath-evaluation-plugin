@@ -28,6 +28,8 @@
 package eu.musoft.eclipse.xpath.evaluation.plugin;
 
 import java.io.StringReader;
+import java.io.StringWriter;
+import java.io.Writer;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
@@ -35,19 +37,32 @@ import javax.xml.transform.stream.StreamSource;
 import net.sf.saxon.s9api.DocumentBuilder;
 import net.sf.saxon.s9api.Processor;
 import net.sf.saxon.s9api.SaxonApiException;
+import net.sf.saxon.s9api.Serializer;
 import net.sf.saxon.s9api.XPathCompiler;
 import net.sf.saxon.s9api.XPathExecutable;
 import net.sf.saxon.s9api.XPathSelector;
 import net.sf.saxon.s9api.XdmItem;
 import net.sf.saxon.s9api.XdmNode;
 import net.sf.saxon.s9api.XdmValue;
+import net.sf.saxon.s9api.XsltExecutable;
+import net.sf.saxon.s9api.XsltTransformer;
 
 /**
  * This class performs evaluation of XPath expression against an XML document.
  */
 public class XPathEvaluator {
 
-	private static final Processor processor = new Processor(false);
+	private static final Processor processor;
+
+	private static final XsltExecutable xsltExec;
+	private static final boolean isPrettyPrintEnabled;
+
+	static {
+		processor = new Processor(false);
+
+		xsltExec = getXsltRuntime();
+		isPrettyPrintEnabled = xsltExec != null;
+	}
 
 	/**
 	 * Evaluates XPath expression against provided XML.<br/>
@@ -77,7 +92,16 @@ public class XPathEvaluator {
 		XdmNode xdm = buildXdm(xml);
 		XdmValue xpathResult = evaluate(exec, xdm);
 
-		return transformResult(xpathResult);
+		return transformResult(xpathResult, false);
+	}
+
+	private static XsltExecutable getXsltRuntime() {
+		try {
+			return processor.newXsltCompiler().compile(new StreamSource(Activator.loadFile("xslt/indent.xsl")));
+		} catch (Exception e) {
+			// unable to load XSLT runtime
+			return null;
+		}
 	}
 
 	private static XPathExecutable getXPathExecuatble(String xpath) throws SaxonApiException {
@@ -97,14 +121,32 @@ public class XPathEvaluator {
 		return selector.evaluate();
 	}
 
-	private static String transformResult(XdmValue xdm) {
+	private static String transformResult(XdmValue xdm, boolean isPrettyPrint) throws Exception {
+		if (isPrettyPrint && isPrettyPrintEnabled) {
+			return prettyPrint(xdm);
+		}
+
 		StringBuilder sb = new StringBuilder();
 		for (XdmItem item: xdm) {
 			sb.append(item);
-			sb.append("\n");
+		}
+		return sb.toString();
+	}
+
+	private static String prettyPrint(XdmValue xdm) throws Exception {
+		Writer result = new StringWriter();
+		XsltTransformer xsltTransformer = xsltExec.load();
+		xsltTransformer.setDestination(new Serializer(result));
+
+		for (XdmItem item: xdm) {
+			if (item instanceof XdmNode) {
+				xsltTransformer.setInitialContextNode((XdmNode) item);
+				xsltTransformer.transform();
+				result.write("\n");
+			}
 		}
 
-		return sb.toString();
+		return result.toString();
 	}
 
 }
