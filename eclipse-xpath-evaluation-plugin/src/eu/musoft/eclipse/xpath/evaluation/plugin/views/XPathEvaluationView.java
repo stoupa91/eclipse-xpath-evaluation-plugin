@@ -83,7 +83,7 @@ public class XPathEvaluationView extends ViewPart {
 
 		// Execute query button
 		execute = new Button(parent, SWT.PUSH);
-		execute.setImage(new Image(PlatformUI.getWorkbench().getDisplay(), Activator.getImageDescriptor("icons/Apply.png").getImageData()));
+		execute.setImage(new Image(PlatformUI.getWorkbench().getDisplay(), Activator.getImageDescriptor("icons/Play.png").getImageData()));
 		execute.setToolTipText("Run query");
 
 		// Pretty print button
