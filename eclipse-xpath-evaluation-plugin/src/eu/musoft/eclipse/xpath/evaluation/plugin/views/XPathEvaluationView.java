@@ -36,6 +36,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.TabFolder;
+import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbench;
@@ -91,9 +93,16 @@ public class XPathEvaluationView extends ViewPart {
 		prettyPrint.setSelection(true); // pretty print enabled by default
 		prettyPrint.setToolTipText("Pretty print");
 
-		// Result text area
-		result = new Text(parent, SWT.MULTI | SWT.READ_ONLY | SWT.H_SCROLL | SWT.V_SCROLL);
-		result.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
+		// Tabs area
+		TabFolder tabs = new TabFolder(parent, SWT.TOP);
+		tabs.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
+
+		// Result tab
+		TabItem resultTab = new TabItem(tabs, SWT.NONE);
+		resultTab.setText("Result");
+		result = new Text(tabs, SWT.MULTI | SWT.READ_ONLY | SWT.H_SCROLL | SWT.V_SCROLL);
+		result.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		resultTab.setControl(result);
 
 		// add the evaluation trigger listener
 		SelectionListener evaluationTrigger = new EvaluationTrigger(query, prettyPrint, result);
