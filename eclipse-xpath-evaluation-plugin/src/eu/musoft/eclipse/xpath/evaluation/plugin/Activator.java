@@ -31,7 +31,9 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.ILog;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -46,6 +48,8 @@ public class Activator extends AbstractUIPlugin {
 
 	// The shared instance
 	private static Activator plugin;
+	
+	private static ILog logger;
 
 	/**
 	 * The constructor
@@ -63,6 +67,7 @@ public class Activator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
+		logger = this.getLog();
 	}
 
 	/*
@@ -73,6 +78,7 @@ public class Activator extends AbstractUIPlugin {
 	 * )
 	 */
 	public void stop(BundleContext context) throws Exception {
+		logger = null;
 		plugin = null;
 		super.stop(context);
 	}
@@ -114,6 +120,14 @@ public class Activator extends AbstractUIPlugin {
 			throw new IllegalArgumentException("path can not be null");
 
 		return FileLocator.openStream(Activator.getDefault().getBundle(), new Path(path), false);
+	}
+
+	public static void log(String msg) {
+		log(msg, null);
+	}
+
+	public static void log(String msg, Exception e) {
+		logger.log(new Status(Status.INFO, PLUGIN_ID, Status.OK, msg, e));
 	}
 
 }
