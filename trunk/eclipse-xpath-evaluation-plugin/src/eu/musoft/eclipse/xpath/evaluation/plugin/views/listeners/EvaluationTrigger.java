@@ -105,7 +105,8 @@ public class EvaluationTrigger implements SelectionListener {
 		}
 
 		// execute the XPath evaluation (new thread will be created!)
-		new EvaluationJob(xpath, xml, prettyPrint.getSelection(), result).schedule();
+//	new EvaluationJob(xpath, xml, prettyPrint.getSelection(), result).schedule();
+		new EvaluationJob(xpath, xml, true, result).schedule();
 
 		// update the newly entered XPath to the history
 		new QueryHistoryManager(query).update();

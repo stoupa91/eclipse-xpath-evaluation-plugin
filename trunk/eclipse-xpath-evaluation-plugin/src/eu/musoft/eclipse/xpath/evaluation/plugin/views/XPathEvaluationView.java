@@ -74,7 +74,7 @@ public class XPathEvaluationView extends ViewPart {
 	 * it.
 	 */
 	public void createPartControl(Composite parent) {
-		GridLayout grid = new GridLayout(3, false);
+		GridLayout grid = new GridLayout(2, false);
 		parent.setLayout(grid);
 
 		// XPath query combo box
@@ -89,13 +89,13 @@ public class XPathEvaluationView extends ViewPart {
 		execute.setToolTipText("Run query");
 
 		// Pretty print button
-		prettyPrint = new Button(parent, SWT.CHECK);
-		prettyPrint.setSelection(true); // pretty print enabled by default
-		prettyPrint.setToolTipText("Pretty print");
+//		prettyPrint = new Button(parent, SWT.CHECK);
+//		prettyPrint.setSelection(true); // pretty print enabled by default
+//		prettyPrint.setToolTipText("Pretty print");
 
 		// Tabs area
 		TabFolder tabs = new TabFolder(parent, SWT.TOP);
-		tabs.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
+		tabs.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 
 		// Result tab
 		TabItem resultTab = new TabItem(tabs, SWT.NONE);
