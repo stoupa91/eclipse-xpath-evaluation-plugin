@@ -85,6 +85,10 @@ public class XPathEvaluator {
 	 *           XML document fails
 	 */
 	public static String evaluate(String xpath, String xml, boolean isPrettyPrint) throws Exception {
+		Activator.log("Evaluating XPath: " + xpath);
+		Activator.log("Against XML with length: " + ((xml == null) ? null : xml.length()));
+		Activator.log("Pretty print:" + isPrettyPrint);
+
 		if (xpath == null)
 			throw new IllegalArgumentException("xpath can not be null");
 		if (xml == null)
@@ -98,32 +102,41 @@ public class XPathEvaluator {
 	}
 
 	private static XsltExecutable getXsltRuntime() {
+		Activator.log("Getting XSLT runtime");
+
 		try {
 			return processor.newXsltCompiler().compile(new StreamSource(Activator.loadFile("xslt/indent.xsl")));
 		} catch (Exception e) {
 			// unable to load XSLT runtime
+			Activator.log("Unable to load XSLT runtime", e);
 			return null;
 		}
 	}
 
 	private static XPathExecutable getXPathExecuatble(String xpath) throws SaxonApiException {
+		Activator.log("Getting XPath executable");
+
 		XPathCompiler xpathCompiler = processor.newXPathCompiler();
 		return xpathCompiler.compile(xpath);
 	}
 
 	private static XdmNode buildXdm(String xml) throws SaxonApiException {
+		Activator.log("Building Xdm");
 		DocumentBuilder builder = processor.newDocumentBuilder();
 		Source source = new StreamSource(new StringReader(xml));
 		return builder.build(source);
 	}
 
 	private static XdmValue evaluate(XPathExecutable exec, XdmNode xdm) throws SaxonApiException {
+		Activator.log("Evaluating XPath");
 		XPathSelector selector = exec.load();
 		selector.setContextItem(xdm);
 		return selector.evaluate();
 	}
 
 	private static String transformResult(XdmValue xdm, boolean isPrettyPrint) throws Exception {
+		Activator.log("Transforming result");
+
 		if (isPrettyPrint && isPrettyPrintEnabled) {
 			return prettyPrint(xdm);
 		}
@@ -136,6 +149,8 @@ public class XPathEvaluator {
 	}
 
 	private static String prettyPrint(XdmValue xdm) throws Exception {
+		Activator.log("Pretty printing");
+
 		Writer result = new StringWriter();
 		XsltTransformer xsltTransformer = xsltExec.load();
 		xsltTransformer.setDestination(new Serializer(result));
