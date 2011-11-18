@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Eclipse XPath evaluation plugin
+Bundle-SymbolicName: eu.musoft.eclipse.xpath.evaluation.plugin; singleton:=true
+Bundle-Version: 1.1.2.qualifier
+Bundle-Activator: eu.musoft.eclipse.xpath.evaluation.plugin.Activator
+Bundle-Vendor: Martin Uhlir
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.jface.text,
+ org.eclipse.ui.editors
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: lib/saxon9he.jar,
+ .
