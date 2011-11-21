@@ -121,13 +121,17 @@ public class Activator extends AbstractUIPlugin {
 
 		return FileLocator.openStream(Activator.getDefault().getBundle(), new Path(path), false);
 	}
-
-	public static void log(String msg) {
-		log(msg, null);
+	
+	public static void logError(String msg, Exception e) {
+		log(Status.ERROR, msg, e);
 	}
 
-	public static void log(String msg, Exception e) {
-		logger.log(new Status(Status.INFO, PLUGIN_ID, Status.OK, msg, e));
+	public static void logInfo(String msg) {
+		log(Status.INFO, msg, null);
+	}
+
+	private static void log(int severity, String msg, Exception e) {
+		logger.log(new Status(severity, PLUGIN_ID, Status.OK, msg, e));
 	}
 
 }
