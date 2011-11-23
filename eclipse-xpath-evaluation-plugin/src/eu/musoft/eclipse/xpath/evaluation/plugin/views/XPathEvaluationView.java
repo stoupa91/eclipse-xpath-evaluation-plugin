@@ -50,6 +50,7 @@ import org.eclipse.ui.texteditor.ITextEditor;
 import eu.musoft.eclipse.xpath.evaluation.plugin.Activator;
 import eu.musoft.eclipse.xpath.evaluation.plugin.views.listeners.EvaluationTrigger;
 import eu.musoft.eclipse.xpath.evaluation.plugin.views.listeners.QueryComboKeyHandler;
+import eu.musoft.eclipse.xpath.evaluation.plugin.views.namespaces.NamespacesTable;
 
 public class XPathEvaluationView extends ViewPart {
 
@@ -103,6 +104,11 @@ public class XPathEvaluationView extends ViewPart {
 		result = new Text(tabs, SWT.MULTI | SWT.READ_ONLY | SWT.H_SCROLL | SWT.V_SCROLL);
 		result.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		resultTab.setControl(result);
+
+		// Namespaces tab
+		TabItem namespacesTab = new TabItem(tabs, SWT.NONE);
+		namespacesTab.setText("Namespaces");
+		namespacesTab.setControl(new NamespacesTable(tabs));
 
 		// add the evaluation trigger listener
 		SelectionListener evaluationTrigger = new EvaluationTrigger(query, prettyPrint, result);
