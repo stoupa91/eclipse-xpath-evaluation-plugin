@@ -41,6 +41,7 @@ import org.eclipse.ui.progress.UIJob;
 import eu.musoft.eclipse.xpath.evaluation.plugin.Activator;
 import eu.musoft.eclipse.xpath.evaluation.plugin.views.GUIException;
 import eu.musoft.eclipse.xpath.evaluation.plugin.views.XPathEvaluationView;
+import eu.musoft.eclipse.xpath.evaluation.plugin.views.namespaces.NamespacesTable;
 
 /**
  * This class takes care of triggering the evaluation process by registering it
@@ -49,11 +50,13 @@ import eu.musoft.eclipse.xpath.evaluation.plugin.views.XPathEvaluationView;
 public class EvaluationTrigger implements SelectionListener {
 
 	private Combo query;
+	private NamespacesTable namespacesTable;
 	private Button prettyPrint;
 	private Text result;
 
-	public EvaluationTrigger(Combo query, Button prettyPrint, Text result) {
+	public EvaluationTrigger(Combo query, NamespacesTable namespacesTable, Button prettyPrint, Text result) {
 		this.query = query;
+		this.namespacesTable = namespacesTable;
 		this.prettyPrint = prettyPrint;
 		this.result = result;
 	}
@@ -105,7 +108,7 @@ public class EvaluationTrigger implements SelectionListener {
 		}
 
 		// execute the XPath evaluation (new thread will be created!)
-		new EvaluationJob(xpath, xml, prettyPrint.getSelection(), result).schedule();
+		new EvaluationJob(xpath, namespacesTable.getNamespaces(), xml, prettyPrint.getSelection(), result).schedule();
 
 		// update the newly entered XPath to the history
 		new QueryHistoryManager(query).update();

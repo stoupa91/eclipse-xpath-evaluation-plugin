@@ -30,6 +30,7 @@ package eu.musoft.eclipse.xpath.evaluation.plugin;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.util.List;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
@@ -46,6 +47,7 @@ import net.sf.saxon.s9api.XdmNode;
 import net.sf.saxon.s9api.XdmValue;
 import net.sf.saxon.s9api.XsltExecutable;
 import net.sf.saxon.s9api.XsltTransformer;
+import eu.musoft.eclipse.xpath.evaluation.plugin.views.namespaces.Namespace;
 
 /**
  * This class performs evaluation of XPath expression against an XML document.
@@ -73,6 +75,8 @@ public class XPathEvaluator {
 	 * 
 	 * @param xpath
 	 *          string representation of XPath expression
+	 * @param namespaces
+	 *          list of namespaces used in Xpath expression
 	 * @param xml
 	 *          string representation of XML document
 	 * @param isPrettyPrint
@@ -84,7 +88,7 @@ public class XPathEvaluator {
 	 *           could not be parsed properly or the XPath evaluation against the
 	 *           XML document fails
 	 */
-	public static String evaluate(String xpath, String xml, boolean isPrettyPrint) throws Exception {
+	public static String evaluate(String xpath, List<Namespace> namespaces, String xml, boolean isPrettyPrint) throws Exception {
 		Activator.logInfo("Evaluating XPath: " + xpath);
 		Activator.logInfo("Against XML with length: " + ((xml == null) ? null : xml.length()));
 		Activator.logInfo("Pretty print:" + isPrettyPrint);
@@ -94,7 +98,7 @@ public class XPathEvaluator {
 		if (xml == null)
 			throw new IllegalArgumentException("xml can not be null");
 
-		XPathExecutable exec = getXPathExecuatble(xpath);
+		XPathExecutable exec = getXPathExecuatble(xpath, namespaces);
 		XdmNode xdm = buildXdm(xml);
 		XdmValue xpathResult = evaluate(exec, xdm);
 
@@ -113,10 +117,13 @@ public class XPathEvaluator {
 		}
 	}
 
-	private static XPathExecutable getXPathExecuatble(String xpath) throws SaxonApiException {
+	private static XPathExecutable getXPathExecuatble(String xpath, List<Namespace> namespaces) throws SaxonApiException {
 		Activator.logInfo("Getting XPath executable");
 
 		XPathCompiler xpathCompiler = processor.newXPathCompiler();
+		for (Namespace n: namespaces) {
+			xpathCompiler.declareNamespace(n.getPrefix(), n.getURI());
+		}
 		return xpathCompiler.compile(xpath);
 	}
 

@@ -29,6 +29,7 @@ package eu.musoft.eclipse.xpath.evaluation.plugin.views;
 
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
@@ -101,17 +102,15 @@ public class XPathEvaluationView extends ViewPart {
 		// Result tab
 		TabItem resultTab = new TabItem(tabs, SWT.NONE);
 		resultTab.setText("Result");
-		result = new Text(tabs, SWT.MULTI | SWT.READ_ONLY | SWT.H_SCROLL | SWT.V_SCROLL);
+		SashForm splitPane = new SashForm(tabs, SWT.HORIZONTAL);
+		result = new Text(splitPane, SWT.MULTI | SWT.READ_ONLY | SWT.H_SCROLL | SWT.V_SCROLL);
 		result.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		resultTab.setControl(result);
-
-		// Namespaces tab
-		TabItem namespacesTab = new TabItem(tabs, SWT.NONE);
-		namespacesTab.setText("Namespaces");
-		namespacesTab.setControl(new NamespacesTable(tabs));
+		NamespacesTable namespacesTable = new NamespacesTable(splitPane);
+		splitPane.setWeights(new int[] { 6, 4 });
+		resultTab.setControl(splitPane);
 
 		// add the evaluation trigger listener
-		SelectionListener evaluationTrigger = new EvaluationTrigger(query, prettyPrint, result);
+		SelectionListener evaluationTrigger = new EvaluationTrigger(query, namespacesTable, prettyPrint, result);
 		query.addSelectionListener(evaluationTrigger);
 		execute.addSelectionListener(evaluationTrigger);
 	}
