@@ -45,11 +45,14 @@ public class NamespacesTable extends Composite {
 	static final String COLUMN_ERASE = "";
 	static final String COLUMN_PREFIX = "Prefix";
 	static final String COLUMN_URI = "URI";
+	
+	private static final int PREFIX_COLUMN_INIT_WIDTH = 100;
+	private static final int URI_COLUMN_INIT_WIDTH = 350;
 
 	public static final String[] COLUMNS = { COLUMN_ERASE, COLUMN_PREFIX, COLUMN_URI };
 
 	// The data model
-	private List<Namespace> prefixes = new ArrayList<Namespace>();
+	private List<Namespace> namespaces = new ArrayList<Namespace>();
 
 	public NamespacesTable(Composite parent) {
 		super(parent, SWT.NONE);
@@ -60,7 +63,7 @@ public class NamespacesTable extends Composite {
 	}
 
 	private void initializeModel() {
-		prefixes.add(new Namespace());
+		namespaces.add(new Namespace());
 	}
 
 	private void initializeGUI() {
@@ -68,7 +71,7 @@ public class NamespacesTable extends Composite {
 		TableViewer tv = new TableViewer(this, SWT.FULL_SELECTION);
 		tv.setContentProvider(new ContentProvider());
 		tv.setLabelProvider(new NamespaceTableLabelProvider());
-		tv.setInput(prefixes);
+		tv.setInput(namespaces);
 
 		// Set up the table
 		Table table = tv.getTable();
@@ -83,11 +86,11 @@ public class NamespacesTable extends Composite {
 
 		TableColumn prefixColumn = new TableColumn(table, SWT.LEFT);
 		prefixColumn.setText(COLUMN_PREFIX);
-		prefixColumn.setWidth(150);
+		prefixColumn.setWidth(PREFIX_COLUMN_INIT_WIDTH);
 
 		TableColumn uriColumn = new TableColumn(table, SWT.LEFT);
 		uriColumn.setText(COLUMN_URI);
-		uriColumn.setWidth(450);
+		uriColumn.setWidth(URI_COLUMN_INIT_WIDTH);
 
 		// select the 1st line in the table
 		table.select(0);
@@ -104,6 +107,10 @@ public class NamespacesTable extends Composite {
 		tv.setCellEditors(editors);
 
 		tv.refresh();
+	}
+
+	public List<Namespace> getNamespaces() {
+		return namespaces;
 	}
 
 }

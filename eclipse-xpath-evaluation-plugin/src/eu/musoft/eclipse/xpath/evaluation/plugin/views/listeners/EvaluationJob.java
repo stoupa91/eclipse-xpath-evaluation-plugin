@@ -27,6 +27,8 @@
  */
 package eu.musoft.eclipse.xpath.evaluation.plugin.views.listeners;
 
+import java.util.List;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -36,6 +38,7 @@ import org.eclipse.swt.widgets.Text;
 
 import eu.musoft.eclipse.xpath.evaluation.plugin.Activator;
 import eu.musoft.eclipse.xpath.evaluation.plugin.XPathEvaluator;
+import eu.musoft.eclipse.xpath.evaluation.plugin.views.namespaces.Namespace;
 
 /**
  * This class performs actual XPath evaluation. The task will run in a new
@@ -46,6 +49,7 @@ class EvaluationJob extends Job {
 	private Text result;
 
 	private String xpath;
+	private List<Namespace> namespaces;
 	private String xml;
 	private boolean isPrettyPrint;
 
@@ -54,16 +58,19 @@ class EvaluationJob extends Job {
 	 * 
 	 * @param xpath
 	 *          XPath to be evaluated
+	 * @param namespaces
+	 *          list of namespaces used in Xpath expression
 	 * @param xml
 	 *          XML to evaluate the XPath expression on
 	 * @param result
 	 *          evaluated subset of the original XML
 	 */
-	public EvaluationJob(final String xpath, final String xml, final boolean isPrettyPrint, final Text result) {
+	public EvaluationJob(final String xpath, final List<Namespace> namespaces, final String xml, final boolean isPrettyPrint, final Text result) {
 		super("XPath evaluation");
 
 		this.result = result;
 		this.xpath = xpath;
+		this.namespaces = namespaces;
 		this.xml = xml;
 		this.isPrettyPrint = isPrettyPrint;
 	}
@@ -78,7 +85,7 @@ class EvaluationJob extends Job {
 	@Override
 	protected IStatus run(IProgressMonitor monitor) {
 		try {
-			String evaluatedResult = XPathEvaluator.evaluate(xpath, xml, isPrettyPrint);
+			String evaluatedResult = XPathEvaluator.evaluate(xpath, namespaces, xml, isPrettyPrint);
 			outputResult(evaluatedResult);
 		} catch (Exception e) {
 			Status errorStatus = new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getMessage(), e.getCause());

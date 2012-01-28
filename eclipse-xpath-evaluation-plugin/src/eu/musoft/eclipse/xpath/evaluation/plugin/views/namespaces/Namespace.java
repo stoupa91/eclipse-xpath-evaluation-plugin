@@ -30,7 +30,7 @@ package eu.musoft.eclipse.xpath.evaluation.plugin.views.namespaces;
 /**
  * This class represents a namespace.
  */
-class Namespace {
+public class Namespace {
 
 	private String prefix = "";
 	private String uri = "";
