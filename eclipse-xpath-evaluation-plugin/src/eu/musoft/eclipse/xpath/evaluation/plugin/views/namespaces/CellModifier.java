@@ -94,12 +94,11 @@ class CellModifier implements ICellModifier {
 	public void modify(Object element, String property, Object value) {
 		if (element instanceof Item) {
 			Namespace p = (Namespace) ((Item) element).getData();
-			String valueTrimmed = ((String) value).trim();
 
 			if (NamespacesTable.COLUMN_PREFIX.equals(property))
-				p.setPrefix(valueTrimmed);
+				p.setPrefix(((String) value).trim());
 			if (NamespacesTable.COLUMN_URI.equals(property))
-				p.setURI(valueTrimmed);
+				p.setURI((String) value);
 
 			List<Namespace> prefixes = (List<Namespace>) viewer.getInput();
 
