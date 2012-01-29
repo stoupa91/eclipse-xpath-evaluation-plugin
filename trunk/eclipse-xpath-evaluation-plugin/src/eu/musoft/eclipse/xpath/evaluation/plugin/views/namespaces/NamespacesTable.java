@@ -34,18 +34,23 @@ import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.TableItem;
 
 public class NamespacesTable extends Composite {
 
 	static final String COLUMN_ERASE = "";
 	static final String COLUMN_PREFIX = "Prefix";
 	static final String COLUMN_URI = "URI";
-	
+
 	private static final int PREFIX_COLUMN_INIT_WIDTH = 100;
 	private static final int URI_COLUMN_INIT_WIDTH = 350;
 
@@ -68,21 +73,22 @@ public class NamespacesTable extends Composite {
 
 	private void initializeGUI() {
 		// Add the TableViewer
-		TableViewer tv = new TableViewer(this, SWT.FULL_SELECTION);
+		final TableViewer tv = new TableViewer(this, SWT.FULL_SELECTION);
 		tv.setContentProvider(new ContentProvider());
-		tv.setLabelProvider(new NamespaceTableLabelProvider());
+		tv.setLabelProvider(new TableLabelProvider());
 		tv.setInput(namespaces);
 
 		// Set up the table
-		Table table = tv.getTable();
+		final Table table = tv.getTable();
 		table.setLayoutData(new GridData(GridData.FILL_BOTH));
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
 
-		TableColumn eraseColumn = new TableColumn(table, SWT.LEFT);
+		final TableColumn eraseColumn = new TableColumn(table, SWT.LEFT);
 		eraseColumn.setText(COLUMN_ERASE);
 		eraseColumn.pack();
 		eraseColumn.setAlignment(SWT.CENTER);
+		eraseColumn.setResizable(false);
 
 		TableColumn prefixColumn = new TableColumn(table, SWT.LEFT);
 		prefixColumn.setText(COLUMN_PREFIX);
@@ -94,6 +100,53 @@ public class NamespacesTable extends Composite {
 
 		// select the 1st line in the table
 		table.select(0);
+
+		// add table listeners
+		table.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseDown(MouseEvent event) {
+				int rowIdx = -1;
+				int colIdx = -1;
+
+				Rectangle clientArea = table.getClientArea();
+				Point pt = new Point(event.x, event.y);
+				int index = table.getTopIndex();
+				while (index < table.getItemCount()) {
+					boolean visible = false;
+					TableItem item = table.getItem(index);
+					for (int i = 0; i < COLUMNS.length; i++) {
+						Rectangle rect = item.getBounds(i);
+						if (rect.contains(pt)) {
+							rowIdx = index;
+							colIdx = i;
+							break;
+						}
+						if (!visible && rect.intersects(clientArea)) {
+							visible = true;
+						}
+					}
+					if (!visible)
+						break;
+					index++;
+				}
+
+				boolean isExistingRowSelected = rowIdx != -1;
+				boolean isEraseColumnSelected = colIdx == 0;
+				if (isExistingRowSelected && isEraseColumnSelected) {
+					namespaces.remove(rowIdx);
+					table.remove(rowIdx);
+
+					// last row has been removed, put "empty" line
+					if (namespaces.isEmpty() || !namespaces.get(namespaces.size() - 1).isEmpty()) {
+						namespaces.add(new Namespace());
+					}
+
+					tv.refresh();
+				}
+			}
+
+		});
 
 		// Create the cell editors
 		CellEditor[] editors = new CellEditor[3];
