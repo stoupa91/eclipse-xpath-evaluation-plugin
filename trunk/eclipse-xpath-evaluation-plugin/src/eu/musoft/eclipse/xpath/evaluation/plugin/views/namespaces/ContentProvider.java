@@ -38,7 +38,7 @@ import org.eclipse.jface.viewers.Viewer;
 class ContentProvider implements IStructuredContentProvider {
 
 	/**
-	 * Returns the Prefix objects
+	 * Returns the Namespace objects
 	 */
 	public Object[] getElements(Object inputElement) {
 		return ((List<Namespace>) inputElement).toArray();

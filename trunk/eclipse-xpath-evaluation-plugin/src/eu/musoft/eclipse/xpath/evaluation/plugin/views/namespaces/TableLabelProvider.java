@@ -37,7 +37,7 @@ import eu.musoft.eclipse.xpath.evaluation.plugin.Activator;
 /**
  * This class provides the labels for the namespace table
  */
-class NamespaceTableLabelProvider implements ITableLabelProvider {
+class TableLabelProvider implements ITableLabelProvider {
 
 	/**
 	 * Returns the image for particular column.
@@ -71,14 +71,14 @@ class NamespaceTableLabelProvider implements ITableLabelProvider {
 	 * @return text for particular column
 	 */
 	public String getColumnText(Object element, int columnIndex) {
-		Namespace prefix = (Namespace) element;
+		Namespace namespace = (Namespace) element;
 		switch (columnIndex) {
 			case 0:
 				return null;
 			case 1:
-				return prefix.getPrefix();
+				return namespace.getPrefix();
 			case 2:
-				return prefix.getURI();
+				return namespace.getURI();
 		}
 
 		throw new UnsupportedOperationException("Failed getting text for element " + element + " on column index " + columnIndex);
