@@ -72,11 +72,11 @@ class CellModifier implements ICellModifier {
 	 * @return value of the element's property
 	 */
 	public Object getValue(Object element, String property) {
-		Namespace p = (Namespace) element;
+		Namespace n = (Namespace) element;
 		if (NamespacesTable.COLUMN_PREFIX.equals(property))
-			return p.getPrefix();
+			return n.getPrefix();
 		if (NamespacesTable.COLUMN_URI.equals(property))
-			return p.getURI();
+			return n.getURI();
 
 		throw new UnsupportedOperationException("Failed getting element " + element + " for property " + property);
 	}
@@ -93,17 +93,17 @@ class CellModifier implements ICellModifier {
 	 */
 	public void modify(Object element, String property, Object value) {
 		if (element instanceof Item) {
-			Namespace p = (Namespace) ((Item) element).getData();
+			Namespace n = (Namespace) ((Item) element).getData();
 
 			if (NamespacesTable.COLUMN_PREFIX.equals(property))
-				p.setPrefix(((String) value).trim());
+				n.setPrefix(((String) value).trim());
 			if (NamespacesTable.COLUMN_URI.equals(property))
-				p.setURI((String) value);
+				n.setURI((String) value);
 
-			List<Namespace> prefixes = (List<Namespace>) viewer.getInput();
+			List<Namespace> namespaces = (List<Namespace>) viewer.getInput();
 
 			// remove all empty lines if any
-			for (Iterator<Namespace> it = prefixes.iterator(); it.hasNext();) {
+			for (Iterator<Namespace> it = namespaces.iterator(); it.hasNext();) {
 				Namespace namespace = it.next();
 				if (namespace.isEmpty()) {
 					it.remove();
@@ -111,15 +111,15 @@ class CellModifier implements ICellModifier {
 			}
 
 			// append a new line
-			insertNewLine(prefixes);
+			insertNewLine(namespaces);
 
 			// Force the viewer to refresh
 			viewer.refresh();
 		}
 	}
 
-	private void insertNewLine(List<Namespace> prefixes) {
-		prefixes.add(new Namespace());
+	private void insertNewLine(List<Namespace> namespaces) {
+		namespaces.add(new Namespace());
 	}
 
 }
