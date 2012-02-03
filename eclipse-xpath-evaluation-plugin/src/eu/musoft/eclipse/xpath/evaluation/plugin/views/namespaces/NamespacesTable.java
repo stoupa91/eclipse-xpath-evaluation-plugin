@@ -86,16 +86,19 @@ public class NamespacesTable extends Composite {
 
 		final TableColumn eraseColumn = new TableColumn(table, SWT.LEFT);
 		eraseColumn.setText(COLUMN_ERASE);
+		eraseColumn.setToolTipText("Click on icon below to delete a namespace");
 		eraseColumn.pack();
 		eraseColumn.setAlignment(SWT.CENTER);
 		eraseColumn.setResizable(false);
 
 		TableColumn prefixColumn = new TableColumn(table, SWT.LEFT);
 		prefixColumn.setText(COLUMN_PREFIX);
+		prefixColumn.setToolTipText("Namespace prefix");
 		prefixColumn.setWidth(PREFIX_COLUMN_INIT_WIDTH);
 
 		TableColumn uriColumn = new TableColumn(table, SWT.LEFT);
 		uriColumn.setText(COLUMN_URI);
+		uriColumn.setToolTipText("Namespace URI");
 		uriColumn.setWidth(URI_COLUMN_INIT_WIDTH);
 
 		// select the 1st line in the table
