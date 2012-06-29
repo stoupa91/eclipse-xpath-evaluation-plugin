@@ -6,8 +6,8 @@
 This page describes four installation processes of the plug-in. You can choose either one which suits you and your Eclipse version best.
 
 
-= Automatic installation - Drag & Drop (Indigo) =
-  * Drag and drop following icon into a running Eclipse Indigo workspace <a href='http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=148833' title='Drag and drop into a running Eclipse Indigo workspace to install Eclipse XPath evaluation plugin'><img src='http://marketplace.eclipse.org/misc/installbutton.png'/></a>
+= Automatic installation - Drag & Drop (Indigo, Juno) =
+  * Drag and drop following icon into a running Eclipse Indigo/Juno workspace <a href='http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=148833' title='Drag and drop into a running Eclipse Indigo/Juno workspace to install Eclipse XPath evaluation plugin'><img src='http://marketplace.eclipse.org/misc/installbutton.png'/></a>
   * Click "Next"
   * Accept license
   * Click "Finish"
@@ -17,7 +17,7 @@ This page describes four installation processes of the plug-in. You can choose e
 
 
 
-= Automatic installation from within Eclipse Marketplace (Helios, Indigo) =
+= Automatic installation from within Eclipse Marketplace (Helios, Indigo, Juno) =
   * Go to Help -> Eclipse Marketplace
   * Type into the search box "xpath", select "Tools" in the market combo box and/or "XML" in the categories combo box to narrow down the results and click "Go"
   * One of the results should appear "Eclipse XPath evaluation plugin", click on "Install" button next to it
@@ -28,7 +28,7 @@ This page describes four installation processes of the plug-in. You can choose e
   * At the end of installation process you will be asked to restart Eclipse, click on "Restart now"
 
 
-= Manual installation from within Eclipse (Galileo, Helios, Indigo) =
+= Manual installation from within Eclipse (Galileo, Helios, Indigo, Juno) =
   * Go to Help -> Install New Software
   * Add repository ("Add.." button)
   * Fill in Name as "XPath" and Location as "http://eclipse-xpath-evaluation-plugin.googlecode.com/svn/trunk/eclipse-xpath-evaluation-plugin-update-site/"
