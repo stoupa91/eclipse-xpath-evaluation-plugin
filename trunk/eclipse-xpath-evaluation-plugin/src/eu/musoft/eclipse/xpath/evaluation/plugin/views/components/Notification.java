@@ -50,13 +50,7 @@ public class Notification {
 	public static void showToolTip(int style, String message, final Control component) {
 		Shell parent = component.getShell();
 		final ToolTip tooltip = new ToolTip(parent, style);
-
-		if ((style & SWT.ICON_ERROR) == SWT.ICON_ERROR) {
-			tooltip.setText("Error");
-		} else if ((style & SWT.ICON_INFORMATION) == SWT.ICON_INFORMATION) {
-			tooltip.setText("Information");
-		}
-		tooltip.setMessage(message);
+		tooltip.setText(message);
 
 		Point componentLocation = component.toDisplay(component.getLocation());
 		tooltip.setLocation(componentLocation.x, componentLocation.y + (component.getSize().y / 2));
