@@ -33,11 +33,14 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.progress.UIJob;
 
-import eu.musoft.eclipse.xpath.evaluation.plugin.Activator;
 import eu.musoft.eclipse.xpath.evaluation.plugin.XPathEvaluator;
+import eu.musoft.eclipse.xpath.evaluation.plugin.views.components.Notification;
 import eu.musoft.eclipse.xpath.evaluation.plugin.views.namespaces.Namespace;
 
 /**
@@ -46,6 +49,7 @@ import eu.musoft.eclipse.xpath.evaluation.plugin.views.namespaces.Namespace;
  */
 class EvaluationJob extends Job {
 
+	private Combo query;
 	private Text result;
 
 	private String xpath;
@@ -64,10 +68,12 @@ class EvaluationJob extends Job {
 	 *          XML to evaluate the XPath expression on
 	 * @param result
 	 *          evaluated subset of the original XML
+	 * @param query
 	 */
-	public EvaluationJob(final String xpath, final List<Namespace> namespaces, final String xml, final boolean isPrettyPrint, final Text result) {
+	public EvaluationJob(final String xpath, final List<Namespace> namespaces, final String xml, final boolean isPrettyPrint, final Text result, Combo query) {
 		super("XPath evaluation");
 
+		this.query = query;
 		this.result = result;
 		this.xpath = xpath;
 		this.namespaces = namespaces;
@@ -87,9 +93,14 @@ class EvaluationJob extends Job {
 		try {
 			String evaluatedResult = XPathEvaluator.evaluate(xpath, namespaces, xml, isPrettyPrint);
 			outputResult(evaluatedResult);
-		} catch (Exception e) {
-			Status errorStatus = new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getMessage(), e.getCause());
-			return errorStatus;
+		} catch (final Exception e) {
+			new UIJob("XPath evaluation") {
+				@Override
+				public IStatus runInUIThread(IProgressMonitor monitor) {
+					Notification.showToolTip(SWT.BALLOON | SWT.ICON_ERROR, e.getMessage(), query);
+					return Status.OK_STATUS;
+				}
+			}.schedule();
 		}
 
 		return Status.OK_STATUS;
@@ -99,6 +110,10 @@ class EvaluationJob extends Job {
 		Display.getDefault().syncExec(new Runnable() {
 			public void run() {
 				result.setText(evaluatedResult);
+
+				if (evaluatedResult.length() == 0) { // display message if no result returned
+					Notification.showToolTip(SWT.BALLOON | SWT.ICON_INFORMATION, "No result has been returned for the given XPath query", query);
+				}
 			}
 		});
 	}

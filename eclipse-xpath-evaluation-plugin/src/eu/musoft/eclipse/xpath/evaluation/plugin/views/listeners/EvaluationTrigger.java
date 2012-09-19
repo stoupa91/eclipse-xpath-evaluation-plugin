@@ -30,6 +30,7 @@ package eu.musoft.eclipse.xpath.evaluation.plugin.views.listeners;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Point;
@@ -38,9 +39,9 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.progress.UIJob;
 
-import eu.musoft.eclipse.xpath.evaluation.plugin.Activator;
 import eu.musoft.eclipse.xpath.evaluation.plugin.views.GUIException;
 import eu.musoft.eclipse.xpath.evaluation.plugin.views.XPathEvaluationView;
+import eu.musoft.eclipse.xpath.evaluation.plugin.views.components.Notification;
 import eu.musoft.eclipse.xpath.evaluation.plugin.views.namespaces.NamespacesTable;
 
 /**
@@ -71,6 +72,7 @@ public class EvaluationTrigger implements SelectionListener {
 	public void widgetSelected(SelectionEvent e) {
 		// widget selected should be triggered only by Button widget
 		if (e.getSource() instanceof Button) {
+			query.forceFocus();
 			evaluate(e);
 		}
 	}
@@ -99,8 +101,8 @@ public class EvaluationTrigger implements SelectionListener {
 			new UIJob("XPath evaluation") {
 				@Override
 				public IStatus runInUIThread(IProgressMonitor monitor) {
-					Status errorStatus = new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getMessage());
-					return errorStatus;
+					Notification.showToolTip(SWT.BALLOON | SWT.ICON_ERROR, e.getMessage(), query);
+					return Status.OK_STATUS;
 				}
 			}.schedule();
 
@@ -108,7 +110,7 @@ public class EvaluationTrigger implements SelectionListener {
 		}
 
 		// execute the XPath evaluation (new thread will be created!)
-		new EvaluationJob(xpath, namespacesTable.getNamespaces(), xml, prettyPrint.getSelection(), result).schedule();
+		new EvaluationJob(xpath, namespacesTable.getNamespaces(), xml, prettyPrint.getSelection(), result, query).schedule();
 
 		// update the newly entered XPath to the history
 		new QueryHistoryManager(query).update();
