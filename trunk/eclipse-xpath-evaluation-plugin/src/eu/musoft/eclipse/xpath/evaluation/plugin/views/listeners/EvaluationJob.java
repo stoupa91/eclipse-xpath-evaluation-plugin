@@ -97,7 +97,7 @@ class EvaluationJob extends Job {
 			new UIJob("XPath evaluation") {
 				@Override
 				public IStatus runInUIThread(IProgressMonitor monitor) {
-					Notification.showToolTip(SWT.BALLOON | SWT.ICON_ERROR, e.getMessage(), query);
+					Notification.showToolTip(SWT.BALLOON | SWT.ICON_ERROR, "Error", e.getMessage(), query);
 					return Status.OK_STATUS;
 				}
 			}.schedule();
@@ -112,7 +112,7 @@ class EvaluationJob extends Job {
 				result.setText(evaluatedResult);
 
 				if (evaluatedResult.length() == 0) { // display message if no result returned
-					Notification.showToolTip(SWT.BALLOON | SWT.ICON_INFORMATION, "No result has been returned for the given XPath query", query);
+					Notification.showToolTip(SWT.BALLOON | SWT.ICON_INFORMATION, "Information", "No result has been returned for the given XPath query", query);
 				}
 			}
 		});

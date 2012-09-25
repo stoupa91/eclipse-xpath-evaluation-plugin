@@ -154,7 +154,7 @@ public class XPathEvaluationView extends ViewPart {
 
 		IEditorPart editor = page.getActiveEditor();
 		if (editor == null)
-			throw new GUIException("No active editor!");
+			throw new GUIException("No active text editor!");
 
 		return editor;
 	}
