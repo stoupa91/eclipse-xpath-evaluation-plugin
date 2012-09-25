@@ -42,15 +42,18 @@ public class Notification {
 	 * 
 	 * @param style
 	 *          SWT style of the tool tip
+	 * @param text
+	 *          text of the tooltip to display
 	 * @param message
-	 *          message to display
+	 *          message of the tooltip to display
 	 * @param component
 	 *          component above which the tool tip shall be displayed
 	 */
-	public static void showToolTip(int style, String message, final Control component) {
+	public static void showToolTip(int style, String text, String message, final Control component) {
 		Shell parent = component.getShell();
 		final ToolTip tooltip = new ToolTip(parent, style);
-		tooltip.setText(message);
+		tooltip.setText(text);
+		tooltip.setMessage(message);
 
 		Point componentLocation = component.toDisplay(component.getLocation());
 		tooltip.setLocation(componentLocation.x, componentLocation.y + (component.getSize().y / 2));

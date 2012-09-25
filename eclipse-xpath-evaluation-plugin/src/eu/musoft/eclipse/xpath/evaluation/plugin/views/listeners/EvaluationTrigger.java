@@ -101,7 +101,7 @@ public class EvaluationTrigger implements SelectionListener {
 			new UIJob("XPath evaluation") {
 				@Override
 				public IStatus runInUIThread(IProgressMonitor monitor) {
-					Notification.showToolTip(SWT.BALLOON | SWT.ICON_ERROR, e.getMessage(), query);
+					Notification.showToolTip(SWT.BALLOON | SWT.ICON_ERROR, "Error", e.getMessage(), query);
 					return Status.OK_STATUS;
 				}
 			}.schedule();
