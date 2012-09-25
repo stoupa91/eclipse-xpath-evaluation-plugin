@@ -166,7 +166,6 @@ public class XPathEvaluator {
 			if (item instanceof XdmNode) {
 				xsltTransformer.setInitialContextNode((XdmNode) item);
 				xsltTransformer.transform();
-				result.write("\n");
 			}
 		}
 
