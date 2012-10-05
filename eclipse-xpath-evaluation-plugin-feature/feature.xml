@@ -2,7 +2,7 @@
 <feature
       id="eu.musoft.eclipse.xpath.evaluation.plugin"
       label="Eclipse XPath evaluation"
-      version="1.2.1.qualifier"
+      version="1.2.2.qualifier"
       provider-name="Martin Uhlir">
 
    <description url="http://code.google.com/p/eclipse-xpath-evaluation-plugin/">
