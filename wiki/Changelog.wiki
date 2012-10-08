@@ -1,3 +1,5 @@
+#summary Changelog.
+
 ==Version 1.2.2 (2012-10-04)==
 *New features:*
   * Upgraded Saxon library (version 9.4.0.4)
