@@ -1,6 +1,6 @@
 #summary Changelog.
 
-==Version 1.2.2 (2012-10-04)==
+==Version 1.2.3 (2012-10-10)==
 *New features:*
   * Upgraded Saxon library (version 9.4.0.4)
   * [http://code.google.com/p/eclipse-xpath-evaluation-plugin/source/detail?r=85 Improved notification handling]
