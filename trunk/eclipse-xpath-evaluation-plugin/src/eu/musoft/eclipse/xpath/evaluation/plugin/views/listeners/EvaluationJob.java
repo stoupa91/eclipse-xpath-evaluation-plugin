@@ -28,6 +28,7 @@
 package eu.musoft.eclipse.xpath.evaluation.plugin.views.listeners;
 
 import java.util.List;
+import java.util.ResourceBundle;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -49,6 +50,8 @@ import eu.musoft.eclipse.xpath.evaluation.plugin.views.namespaces.Namespace;
  */
 class EvaluationJob extends Job {
 
+  private static final ResourceBundle bundle = ResourceBundle.getBundle("messages");
+  
 	private Combo query;
 	private Text result;
 
@@ -71,7 +74,7 @@ class EvaluationJob extends Job {
 	 * @param query
 	 */
 	public EvaluationJob(final String xpath, final List<Namespace> namespaces, final String xml, final boolean isPrettyPrint, final Text result, Combo query) {
-		super("XPath evaluation");
+		super(bundle.getString("label.xpath.evaluation"));
 
 		this.query = query;
 		this.result = result;
@@ -94,10 +97,10 @@ class EvaluationJob extends Job {
 			String evaluatedResult = XPathEvaluator.evaluate(xpath, namespaces, xml, isPrettyPrint);
 			outputResult(evaluatedResult);
 		} catch (final Exception e) {
-			new UIJob("XPath evaluation") {
+			new UIJob(bundle.getString("label.xpath.evaluation")) {
 				@Override
 				public IStatus runInUIThread(IProgressMonitor monitor) {
-					Notification.showToolTip(SWT.BALLOON | SWT.ICON_ERROR, "Error", e.getMessage(), query);
+					Notification.showToolTip(SWT.BALLOON | SWT.ICON_ERROR, bundle.getString("label.error"), e.getMessage(), query);
 					return Status.OK_STATUS;
 				}
 			}.schedule();
@@ -112,7 +115,7 @@ class EvaluationJob extends Job {
 				result.setText(evaluatedResult);
 
 				if (evaluatedResult.length() == 0) { // display message if no result returned
-					Notification.showToolTip(SWT.BALLOON | SWT.ICON_INFORMATION, "Information", "No result has been returned for the given XPath query", query);
+					Notification.showToolTip(SWT.BALLOON | SWT.ICON_INFORMATION, bundle.getString("label.information"), bundle.getString("error.no.result.returned"), query);
 				}
 			}
 		});

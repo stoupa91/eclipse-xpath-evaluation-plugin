@@ -27,6 +27,8 @@
  */
 package eu.musoft.eclipse.xpath.evaluation.plugin.views.listeners;
 
+import java.util.ResourceBundle;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -50,6 +52,8 @@ import eu.musoft.eclipse.xpath.evaluation.plugin.views.namespaces.NamespacesTabl
  */
 public class EvaluationTrigger implements SelectionListener {
 
+  private static final ResourceBundle bundle = ResourceBundle.getBundle("messages");
+  
 	private Combo query;
 	private NamespacesTable namespacesTable;
 	private Button prettyPrint;
@@ -98,10 +102,10 @@ public class EvaluationTrigger implements SelectionListener {
 		try {
 			xml = XPathEvaluationView.getActiveTextEditorContent();
 		} catch (final GUIException e) {
-			new UIJob("XPath evaluation") {
+			new UIJob(bundle.getString("label.xpath.evaluation")) {
 				@Override
 				public IStatus runInUIThread(IProgressMonitor monitor) {
-					Notification.showToolTip(SWT.BALLOON | SWT.ICON_ERROR, "Error", e.getMessage(), query);
+					Notification.showToolTip(SWT.BALLOON | SWT.ICON_ERROR, bundle.getString("label.error"), e.getMessage(), query);
 					return Status.OK_STATUS;
 				}
 			}.schedule();

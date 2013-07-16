@@ -29,6 +29,7 @@ package eu.musoft.eclipse.xpath.evaluation.plugin.views.namespaces;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.TableViewer;
@@ -46,10 +47,12 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 
 public class NamespacesTable extends Composite {
+  
+  private static final ResourceBundle bundle = ResourceBundle.getBundle("messages");
 
 	static final String COLUMN_ERASE = "";
-	static final String COLUMN_PREFIX = "Prefix";
-	static final String COLUMN_URI = "URI";
+	static final String COLUMN_PREFIX = bundle.getString("label.prefix");
+	static final String COLUMN_URI = bundle.getString("label.uri");
 
 	private static final int PREFIX_COLUMN_INIT_WIDTH = 100;
 	private static final int URI_COLUMN_INIT_WIDTH = 350;
@@ -86,19 +89,19 @@ public class NamespacesTable extends Composite {
 
 		final TableColumn eraseColumn = new TableColumn(table, SWT.LEFT);
 		eraseColumn.setText(COLUMN_ERASE);
-		eraseColumn.setToolTipText("Click on icon below to delete a namespace");
+		eraseColumn.setToolTipText(bundle.getString("label.click.on.icon.to.delete.namespace"));
 		eraseColumn.pack();
 		eraseColumn.setAlignment(SWT.CENTER);
 		eraseColumn.setResizable(false);
 
 		TableColumn prefixColumn = new TableColumn(table, SWT.LEFT);
 		prefixColumn.setText(COLUMN_PREFIX);
-		prefixColumn.setToolTipText("Namespace prefix");
+		prefixColumn.setToolTipText(bundle.getString("label.namespace.prefix"));
 		prefixColumn.setWidth(PREFIX_COLUMN_INIT_WIDTH);
 
 		TableColumn uriColumn = new TableColumn(table, SWT.LEFT);
 		uriColumn.setText(COLUMN_URI);
-		uriColumn.setToolTipText("Namespace URI");
+		uriColumn.setToolTipText(bundle.getString("label.namespace.uri"));
 		uriColumn.setWidth(URI_COLUMN_INIT_WIDTH);
 
 		// select the 1st line in the table

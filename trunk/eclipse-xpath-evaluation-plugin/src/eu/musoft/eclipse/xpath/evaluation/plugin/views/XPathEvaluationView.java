@@ -27,6 +27,8 @@
  */
 package eu.musoft.eclipse.xpath.evaluation.plugin.views;
 
+import java.util.ResourceBundle;
+
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
@@ -55,6 +57,8 @@ import eu.musoft.eclipse.xpath.evaluation.plugin.views.namespaces.NamespacesTabl
 
 public class XPathEvaluationView extends ViewPart {
 
+  private static final ResourceBundle bundle = ResourceBundle.getBundle("messages");
+  
 	private Combo query;
 	private Button execute;
 	private Button prettyPrint;
@@ -82,18 +86,18 @@ public class XPathEvaluationView extends ViewPart {
 		// XPath query combo box
 		query = new Combo(parent, SWT.DROP_DOWN);
 		query.setLayoutData(new GridData(SWT.FILL, 0, true, false));
-		query.setToolTipText("Insert valid XPath query");
+		query.setToolTipText(bundle.getString("label.insert.valid.query"));
 		query.addKeyListener(new QueryComboKeyHandler());
 
 		// Execute query button
 		execute = new Button(parent, SWT.PUSH);
 		execute.setImage(new Image(PlatformUI.getWorkbench().getDisplay(), Activator.getImageDescriptor("icons/Play.png").getImageData()));
-		execute.setToolTipText("Run query");
+		execute.setToolTipText(bundle.getString("label.run.query"));
 
 		// Pretty print button
 		prettyPrint = new Button(parent, SWT.CHECK);
 		prettyPrint.setSelection(true); // pretty print enabled by default
-		prettyPrint.setToolTipText("Pretty print");
+		prettyPrint.setToolTipText(bundle.getString("label.pretty.print"));
 
 		// Tabs area
 		TabFolder tabs = new TabFolder(parent, SWT.TOP);
@@ -101,7 +105,7 @@ public class XPathEvaluationView extends ViewPart {
 
 		// Result tab
 		TabItem resultTab = new TabItem(tabs, SWT.NONE);
-		resultTab.setText("Result");
+		resultTab.setText(bundle.getString("label.result"));
 		SashForm splitPane = new SashForm(tabs, SWT.HORIZONTAL);
 		result = new Text(splitPane, SWT.MULTI | SWT.READ_ONLY | SWT.H_SCROLL | SWT.V_SCROLL);
 		result.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
@@ -142,19 +146,19 @@ public class XPathEvaluationView extends ViewPart {
 	private static IEditorPart getActiveEditor() throws GUIException {
 		IWorkbench workbench = PlatformUI.getWorkbench();
 		if (workbench == null)
-			throw new GUIException("No workbench!");
+			throw new GUIException(bundle.getString("error.no.workbench"));
 
 		IWorkbenchWindow window = workbench.getActiveWorkbenchWindow();
 		if (window == null)
-			throw new GUIException("No active workbench window!");
+			throw new GUIException(bundle.getString("error.no.workbench.window.active"));
 
 		IWorkbenchPage page = window.getActivePage();
 		if (page == null)
-			throw new GUIException("No active page!");
+			throw new GUIException(bundle.getString("error.no.page.active"));
 
 		IEditorPart editor = page.getActiveEditor();
 		if (editor == null)
-			throw new GUIException("No active text editor!");
+			throw new GUIException(bundle.getString("error.no.text.editor.active"));
 
 		return editor;
 	}
@@ -162,7 +166,7 @@ public class XPathEvaluationView extends ViewPart {
 	private static ITextEditor getActiveTextEditor() throws GUIException {
 		ITextEditor textEditor = (ITextEditor) getActiveEditor().getAdapter(ITextEditor.class);
 		if (textEditor == null)
-			throw new GUIException("No text editor!");
+			throw new GUIException(bundle.getString("error.no.text.editor"));
 
 		return textEditor;
 	}
