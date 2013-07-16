@@ -42,6 +42,7 @@ import net.sf.saxon.s9api.Serializer;
 import net.sf.saxon.s9api.XPathCompiler;
 import net.sf.saxon.s9api.XPathExecutable;
 import net.sf.saxon.s9api.XPathSelector;
+import net.sf.saxon.s9api.XdmAtomicValue;
 import net.sf.saxon.s9api.XdmItem;
 import net.sf.saxon.s9api.XdmNode;
 import net.sf.saxon.s9api.XdmValue;
@@ -144,7 +145,10 @@ public class XPathEvaluator {
 	private static String transformResult(XdmValue xdm, boolean isPrettyPrint) throws Exception {
 		Activator.logInfo("Transforming result");
 
-		if (isPrettyPrint && isPrettyPrintEnabled) {
+		boolean isAtomicValue = xdm instanceof XdmAtomicValue;
+		Activator.logInfo("Result atomic value: " + isAtomicValue);
+		
+		if (!isAtomicValue && isPrettyPrint && isPrettyPrintEnabled) {
 			return prettyPrint(xdm);
 		}
 
