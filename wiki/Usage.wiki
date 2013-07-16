@@ -6,7 +6,7 @@
 This page describes the how to use the plug-in.
 
 
-= Open XPath view (Indigo, Juno) =
+= Open XPath view (Indigo, Juno, Kepler) =
   * Go to _Window -> Show View -> Other -> XML -> XPath_, whereas new view, for executing the XPath expressions, will be shown
 
 
