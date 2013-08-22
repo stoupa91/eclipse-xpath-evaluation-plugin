@@ -89,7 +89,7 @@ public class XPathEvaluator {
 	 *           could not be parsed properly or the XPath evaluation against the
 	 *           XML document fails
 	 */
-	public static String evaluate(String xpath, List<Namespace> namespaces, String xml, boolean isPrettyPrint) throws Exception {
+	public static XdmValue evaluate(String xpath, List<Namespace> namespaces, String xml, boolean isPrettyPrint) throws Exception {
 		Activator.logInfo("Evaluating XPath: " + xpath);
 		Activator.logInfo("Against XML with length: " + ((xml == null) ? null : xml.length()));
 		Activator.logInfo("Pretty print:" + isPrettyPrint);
@@ -101,9 +101,7 @@ public class XPathEvaluator {
 
 		XPathExecutable exec = getXPathExecuatble(xpath, namespaces);
 		XdmNode xdm = buildXdm(xml);
-		XdmValue xpathResult = evaluate(exec, xdm);
-
-		return transformResult(xpathResult, isPrettyPrint);
+		return evaluate(exec, xdm);
 	}
 
 	private static XsltExecutable getXsltRuntime() {
@@ -142,7 +140,7 @@ public class XPathEvaluator {
 		return selector.evaluate();
 	}
 
-	private static String transformResult(XdmValue xdm, boolean isPrettyPrint) throws Exception {
+	public static String transformResult(XdmValue xdm, boolean isPrettyPrint) throws Exception {
 		Activator.logInfo("Transforming result");
 
 		boolean isAtomicValue = xdm instanceof XdmAtomicValue;

@@ -30,6 +30,8 @@ package eu.musoft.eclipse.xpath.evaluation.plugin.views.listeners;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import net.sf.saxon.s9api.XdmValue;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -94,8 +96,9 @@ class EvaluationJob extends Job {
 	@Override
 	protected IStatus run(IProgressMonitor monitor) {
 		try {
-			String evaluatedResult = XPathEvaluator.evaluate(xpath, namespaces, xml, isPrettyPrint);
-			outputResult(evaluatedResult);
+			XdmValue evaluatedResult = XPathEvaluator.evaluate(xpath, namespaces, xml, isPrettyPrint);
+			String evaluatedResultXml = XPathEvaluator.transformResult(evaluatedResult, isPrettyPrint);
+			outputResult(evaluatedResultXml, evaluatedResult.size());
 		} catch (final Exception e) {
 			new UIJob(bundle.getString("label.xpath.evaluation")) {
 				@Override
@@ -109,14 +112,12 @@ class EvaluationJob extends Job {
 		return Status.OK_STATUS;
 	}
 
-	private void outputResult(final String evaluatedResult) {
+	private void outputResult(final String evaluatedResult, final int resultsCount) {
 		Display.getDefault().syncExec(new Runnable() {
 			public void run() {
 				result.setText(evaluatedResult);
 
-				if (evaluatedResult.length() == 0) { // display message if no result returned
-					Notification.showToolTip(SWT.BALLOON | SWT.ICON_INFORMATION, bundle.getString("label.information"), bundle.getString("error.no.result.returned"), query);
-				}
+				Notification.showToolTip(SWT.BALLOON | SWT.ICON_INFORMATION, bundle.getString("label.information"), bundle.getString("label.number.of.results") + ": " + resultsCount, query);
 			}
 		});
 	}
