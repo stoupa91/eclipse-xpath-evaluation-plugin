@@ -52,17 +52,20 @@ import org.eclipse.ui.texteditor.ITextEditor;
 
 import eu.musoft.eclipse.xpath.evaluation.plugin.Activator;
 import eu.musoft.eclipse.xpath.evaluation.plugin.views.listeners.EvaluationTrigger;
+import eu.musoft.eclipse.xpath.evaluation.plugin.views.listeners.NamespaceLoadTrigger;
 import eu.musoft.eclipse.xpath.evaluation.plugin.views.listeners.QueryComboKeyHandler;
 import eu.musoft.eclipse.xpath.evaluation.plugin.views.namespaces.NamespacesTable;
 
 public class XPathEvaluationView extends ViewPart {
 
-  private static final ResourceBundle bundle = ResourceBundle.getBundle("messages");
-  
+	private static final ResourceBundle bundle = ResourceBundle.getBundle("messages");
+	private static final int GRID_COLUMNS = 4;
+
 	private Combo query;
 	private Button execute;
 	private Button prettyPrint;
 	private Text result;
+	private Button namespaceLoader;
 
 	/**
 	 * The ID of the view as specified by the extension.
@@ -80,7 +83,7 @@ public class XPathEvaluationView extends ViewPart {
 	 * it.
 	 */
 	public void createPartControl(Composite parent) {
-		GridLayout grid = new GridLayout(3, false);
+		GridLayout grid = new GridLayout(GRID_COLUMNS, false);
 		parent.setLayout(grid);
 
 		// XPath query combo box
@@ -94,6 +97,10 @@ public class XPathEvaluationView extends ViewPart {
 		execute.setImage(new Image(PlatformUI.getWorkbench().getDisplay(), Activator.getImageDescriptor("icons/Play.png").getImageData()));
 		execute.setToolTipText(bundle.getString("label.run.query"));
 
+		namespaceLoader = new Button(parent, SWT.PUSH);
+		namespaceLoader.setImage(new Image(PlatformUI.getWorkbench().getDisplay(), Activator.getImageDescriptor("icons/xml-namespace.png").getImageData()));
+		namespaceLoader.setToolTipText(bundle.getString("label.load.all.namespaces"));
+
 		// Pretty print button
 		prettyPrint = new Button(parent, SWT.CHECK);
 		prettyPrint.setSelection(true); // pretty print enabled by default
@@ -101,7 +108,7 @@ public class XPathEvaluationView extends ViewPart {
 
 		// Tabs area
 		TabFolder tabs = new TabFolder(parent, SWT.TOP);
-		tabs.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
+		tabs.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, GRID_COLUMNS, 1));
 
 		// Result tab
 		TabItem resultTab = new TabItem(tabs, SWT.NONE);
@@ -117,6 +124,10 @@ public class XPathEvaluationView extends ViewPart {
 		SelectionListener evaluationTrigger = new EvaluationTrigger(query, namespacesTable, prettyPrint, result);
 		query.addSelectionListener(evaluationTrigger);
 		execute.addSelectionListener(evaluationTrigger);
+
+		// add namespace loader listener
+		SelectionListener namespaceLoaderListener = new NamespaceLoadTrigger(query, namespacesTable);
+		namespaceLoader.addSelectionListener(namespaceLoaderListener);
 	}
 
 	/**

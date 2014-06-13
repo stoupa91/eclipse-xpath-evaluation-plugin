@@ -61,6 +61,8 @@ public class NamespacesTable extends Composite {
 
 	// The data model
 	private List<Namespace> namespaces = new ArrayList<Namespace>();
+	
+	private TableViewer tv = null;
 
 	public NamespacesTable(Composite parent) {
 		super(parent, SWT.NONE);
@@ -76,7 +78,7 @@ public class NamespacesTable extends Composite {
 
 	private void initializeGUI() {
 		// Add the TableViewer
-		final TableViewer tv = new TableViewer(this, SWT.FULL_SELECTION);
+		tv = new TableViewer(this, SWT.FULL_SELECTION);
 		tv.setContentProvider(new ContentProvider());
 		tv.setLabelProvider(new TableLabelProvider());
 		tv.setInput(namespaces);
@@ -165,6 +167,10 @@ public class NamespacesTable extends Composite {
 		tv.setCellModifier(new CellModifier(tv));
 		tv.setCellEditors(editors);
 
+		tv.refresh();
+	}
+	
+	public void refresh() {
 		tv.refresh();
 	}
 
