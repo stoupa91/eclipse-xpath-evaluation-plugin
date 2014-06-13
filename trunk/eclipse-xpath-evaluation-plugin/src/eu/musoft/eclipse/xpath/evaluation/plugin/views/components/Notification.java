@@ -55,7 +55,7 @@ public class Notification {
 		tooltip.setText(text);
 		tooltip.setMessage(message);
 
-		Point componentLocation = component.toDisplay(component.getLocation());
+		Point componentLocation = component.toDisplay(parent.getLocation());
 		tooltip.setLocation(componentLocation.x, componentLocation.y + (component.getSize().y / 2));
 
 		Listener listener = new Listener() {
