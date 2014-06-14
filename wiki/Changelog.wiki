@@ -1,5 +1,11 @@
 #summary Changelog.
 
+==Version 1.3.0 (2014-06-14)==
+*New features:*
+  * Loading of all namespaces from the current file
+
+<hr/>
+
 ==Version 1.2.5 (2013-08-22)==
 *New features:*
   * Showing number of matched results
