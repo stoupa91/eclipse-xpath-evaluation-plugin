@@ -39,6 +39,7 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
+import javax.xml.xpath.XPathFactoryConfigurationException;
 
 import net.sf.saxon.tree.NamespaceNode;
 
@@ -94,7 +95,7 @@ public class NamespaceLoadJob extends Job {
 			Map<String, String> allNamespacesMap = getAllNamespacesMap();
 			updateNamespacesTableData(allNamespacesMap);
 			outputResult();
-		} catch (final XPathExpressionException e) {
+		} catch (final Exception e) {
 			new UIJob(bundle.getString("label.namespace.loader")) {
 				@Override
 				public IStatus runInUIThread(IProgressMonitor monitor) {
@@ -106,8 +107,8 @@ public class NamespaceLoadJob extends Job {
 		return Status.OK_STATUS;
 	}
 
-	private Map<String, String> getAllNamespacesMap() throws XPathExpressionException {
-		XPathExpression xPathExpression = XPathFactory.newInstance().newXPath().compile("//namespace::*");
+	private Map<String, String> getAllNamespacesMap() throws XPathExpressionException, XPathFactoryConfigurationException {
+		XPathExpression xPathExpression = XPathFactory.newInstance(XPathFactory.DEFAULT_OBJECT_MODEL_URI, "net.sf.saxon.xpath.XPathFactoryImpl", null).newXPath().compile("//namespace::*");
 		List<NamespaceNode> nodeList = (ArrayList<NamespaceNode>) xPathExpression.evaluate(new StreamSource(new StringReader(xml)), XPathConstants.NODESET);
 		Map<String, String> allNamespacesMap = new TreeMap<String, String>();
 		if (nodeList != null) {
