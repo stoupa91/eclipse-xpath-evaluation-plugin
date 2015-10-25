@@ -47,8 +47,8 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 
 public class NamespacesTable extends Composite {
-  
-  private static final ResourceBundle bundle = ResourceBundle.getBundle("messages");
+
+	private static final ResourceBundle bundle = ResourceBundle.getBundle("messages");
 
 	static final String COLUMN_ERASE = "";
 	static final String COLUMN_PREFIX = bundle.getString("label.prefix");
@@ -61,7 +61,7 @@ public class NamespacesTable extends Composite {
 
 	// The data model
 	private List<Namespace> namespaces = new ArrayList<Namespace>();
-	
+
 	private TableViewer tv = null;
 
 	public NamespacesTable(Composite parent) {
@@ -169,9 +169,21 @@ public class NamespacesTable extends Composite {
 
 		tv.refresh();
 	}
-	
+
 	public void refresh() {
 		tv.refresh();
+	}
+
+	/*
+	 * Gets the actual namespaces to be displayed in UI.
+	 */
+	public List<Namespace> getActualNamespaces() {
+		List<Namespace> list = new ArrayList<Namespace>(namespaces);
+
+		// since the namespaces are taken from UI which includes (as last) element a namespace with empty prefix and empty URI, this element should be removed it would override any namespace with empty
+		// prefix defined in the XML document
+		list.remove(new Namespace());
+		return list;
 	}
 
 	public List<Namespace> getNamespaces() {
