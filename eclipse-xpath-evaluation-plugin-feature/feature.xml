@@ -5,15 +5,15 @@
       version="1.4.1.qualifier"
       provider-name="Martin Uhlir">
 
-   <description url="http://code.google.com/p/eclipse-xpath-evaluation-plugin/">
+   <description url="https://github.com/stoupa91/eclipse-xpath-evaluation-plugin/">
       Enables evaluation of XPath expressions against the active text editor containing XML.
    </description>
 
-   <copyright url="http://code.google.com/p/eclipse-xpath-evaluation-plugin/">
+   <copyright url="https://github.com/stoupa91/eclipse-xpath-evaluation-plugin/">
       Copyright (c) 2011-2015, Martin Uhlir. All rights reserved.
    </copyright>
 
-   <license url="http://code.google.com/p/eclipse-xpath-evaluation-plugin/">
+   <license url="https://github.com/stoupa91/eclipse-xpath-evaluation-plugin/">
       Copyright (c) 2011-2015, Martin Uhlir
 All rights reserved.
 
@@ -42,7 +42,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
    </license>
 
    <url>
-      <update label="Eclipse XPath evaluation - update site" url="http://eclipse-xpath-evaluation-plugin.googlecode.com/svn/trunk/eclipse-xpath-evaluation-plugin-update-site/"/>
+      <update label="Eclipse XPath evaluation - update site" url="https://raw.github.com/stoupa91/eclipse-xpath-evaluation-plugin/master/eclipse-xpath-evaluation-plugin-update-site/"/>
    </url>
 
    <plugin
