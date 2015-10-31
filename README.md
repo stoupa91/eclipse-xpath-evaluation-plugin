@@ -23,6 +23,7 @@ Java version:
  * 1.6 and above (from plugin version 1.4.1 onwards)
  * 1.5 (up to plugin version 1.3.0)
 
+<h2>Installation</h2>
 Automatic installation - Drag & Drop (Indigo, Juno, Kepler, Luna, Mars)
  * Drag and drop following icon into a running Eclipse Indigo/Juno/Kepler workspace
  * Click "Next"
