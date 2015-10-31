@@ -23,6 +23,7 @@ Java version:
  * 1.6 and above (from plugin version 1.4.1 onwards)
  * 1.5 (up to plugin version 1.3.0)
 
+<h2>Installation</h2>
 Automatic installation - Drag & Drop (Indigo, Juno, Kepler, Luna, Mars)
  * Drag and drop following icon into a running Eclipse Indigo/Juno/Kepler workspace
  * Click "Next"
@@ -64,6 +65,20 @@ Manual installation from within Eclipse (Ganymede)
  * At the end of installation process you will be asked to restart Eclipse, click on "Restart now" 
 
 Manual installation (Ganymede, Galileo, Helios)
- * Download provided zip file with the most recent version of the plug-in implementation
+ * Download provided zip file with the most recent version of the plug-in implementation from "https://github.com/stoupa91/eclipse-xpath-evaluation-plugin/tree/master/eclipse-xpath-evaluation-plugin-update-site/archive"
  * Extract the zip file into the home directory of your eclipse installation
  * Launch Eclipse IDE
+
+<h2>Usage</h2>
+Open XPath view (Indigo, Juno, Kepler, Luna, Mars)
+ * Go to Window -> Show View -> Other -> XML -> XPath, whereas new view, for executing the XPath expressions, will be shown 
+
+Open XPath view (Ganymede, Galileo, Helios)
+ * Go to Window -> Show View -> Other -> Other -> XPath, whereas new view, for executing the XPath expressions, will be shown 
+
+<b>XPath view usage</b>
+ * Open an XML file in (any) text editor within your eclipse IDE
+ * Provide XPath query you want to execute in the combo box
+ * Optionally, you can define several namespaces used in your XPath query in the table on the right side of the view by providing namespace prefix and its URI or click on 'Load all namespaces from current file' to automatically load all the namespaces
+ * Execute the query either by pressing 'Enter' (while the cursor is still in the XPath query input box) or by clicking on 'Run query' button
+ * The result will be shown under the query combo box
