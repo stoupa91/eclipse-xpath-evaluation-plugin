@@ -82,3 +82,7 @@ Open XPath view (Ganymede, Galileo, Helios)
  * Optionally, you can define several namespaces used in your XPath query in the table on the right side of the view by providing namespace prefix and its URI or click on 'Load all namespaces from current file' to automatically load all the namespaces
  * Execute the query either by pressing 'Enter' (while the cursor is still in the XPath query input box) or by clicking on 'Run query' button
  * The result will be shown under the query combo box
+
+<h2>Archive</h2>
+<a href="https://github.com/stoupa91/eclipse-xpath-evaluation-plugin/raw/master/eclipse-xpath-evaluation-plugin-update-site/archive/eclipse-xpath-evaluation-plugin-1.4.2.zip">eclipse-xpath-evaluation-plugin-1.4.2.zip</a>
+<a href="https://github.com/stoupa91/eclipse-xpath-evaluation-plugin/raw/master/eclipse-xpath-evaluation-plugin-update-site/archive/eclipse-xpath-evaluation-plugin-1.3.0.zip">eclipse-xpath-evaluation-plugin-1.3.0.zip</a>
