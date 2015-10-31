@@ -64,6 +64,6 @@ Manual installation from within Eclipse (Ganymede)
  * At the end of installation process you will be asked to restart Eclipse, click on "Restart now" 
 
 Manual installation (Ganymede, Galileo, Helios)
- * Download provided zip file with the most recent version of the plug-in implementation
+ * Download provided zip file with the most recent version of the plug-in implementation from "https://github.com/stoupa91/eclipse-xpath-evaluation-plugin/tree/master/eclipse-xpath-evaluation-plugin-update-site/archive"
  * Extract the zip file into the home directory of your eclipse installation
  * Launch Eclipse IDE
