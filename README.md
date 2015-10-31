@@ -85,4 +85,5 @@ Open XPath view (Ganymede, Galileo, Helios)
 
 <h2>Archive</h2>
 <a href="https://github.com/stoupa91/eclipse-xpath-evaluation-plugin/raw/master/eclipse-xpath-evaluation-plugin-update-site/archive/eclipse-xpath-evaluation-plugin-1.4.2.zip">eclipse-xpath-evaluation-plugin-1.4.2.zip</a>
+<br />
 <a href="https://github.com/stoupa91/eclipse-xpath-evaluation-plugin/raw/master/eclipse-xpath-evaluation-plugin-update-site/archive/eclipse-xpath-evaluation-plugin-1.3.0.zip">eclipse-xpath-evaluation-plugin-1.3.0.zip</a>
