@@ -45,7 +45,7 @@ Automatic installation from within Eclipse Marketplace (Helios, Indigo, Juno, Ke
 Manual installation from within Eclipse (Galileo, Helios, Indigo, Juno, Kepler, Luna, Mars)
  * Go to Help -> Install New Software
  * Add repository ("Add.." button)
- * Fill in Name as "XPath" and Location as "https://raw.github.com/stoupa91/eclipse-xpath-evaluation-plugin/master/eclipse-xpath-evaluation-plugin-update-site/"
+ * Fill in Name as "XPath" and Location as "https://raw.githubusercontent.com/stoupa91/eclipse-xpath-evaluation-plugin/master/eclipse-xpath-evaluation-plugin-update-site/"
  * Select the loaded plug-in in "Uncategorized" section
  * Click "Next", "Next"
  * Accept license
@@ -56,7 +56,7 @@ Manual installation from within Eclipse (Galileo, Helios, Indigo, Juno, Kepler, 
 Manual installation from within Eclipse (Ganymede)
  * Go to Help -> Software Updates
  * Click "Add Site.."
- * Fill in Location as "https://raw.github.com/stoupa91/eclipse-xpath-evaluation-plugin/master/eclipse-xpath-evaluation-plugin-update-site/"
+ * Fill in Location as "https://raw.githubusercontent.com/stoupa91/eclipse-xpath-evaluation-plugin/master/eclipse-xpath-evaluation-plugin-update-site/"
  * Select the loaded plug-in in "Uncategorized" section
  * Click "Install"
  * Accept license
