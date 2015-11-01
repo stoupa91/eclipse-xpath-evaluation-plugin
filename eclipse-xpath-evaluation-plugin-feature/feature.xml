@@ -2,7 +2,7 @@
 <feature
       id="eu.musoft.eclipse.xpath.evaluation.plugin"
       label="Eclipse XPath evaluation"
-      version="1.4.3.qualifier"
+      version="1.4.4.qualifier"
       provider-name="Martin Uhlir">
 
    <description url="https://github.com/stoupa91/eclipse-xpath-evaluation-plugin/">
@@ -47,9 +47,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
    <plugin
          id="eu.musoft.eclipse.xpath.evaluation.plugin"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="1.4.4.qualifier"/>
 
 </feature>
