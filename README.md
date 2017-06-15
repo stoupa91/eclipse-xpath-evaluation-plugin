@@ -71,6 +71,7 @@ Manual installation (Ganymede, Galileo, Helios)
  * Launch Eclipse IDE
 
 <h2>Usage</h2>
+
 Open XPath view (Indigo, Juno, Kepler, Luna, Mars)
  * Go to Window -> Show View -> Other -> XML -> XPath, whereas new view, for executing the XPath expressions, will be shown 
 
