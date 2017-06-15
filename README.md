@@ -25,7 +25,7 @@ Java version:
 
 <h2>Installation</h2>
 Automatic installation - Drag & Drop (Indigo, Juno, Kepler, Luna, Mars)
- * Drag and drop following icon into a running Eclipse Indigo/Juno/Kepler/Luna/Mars workspace ![Alt text](http://marketplace.eclipse.org/misc/installbutton.png "Optional title") 
+ * Drag and drop following icon into a running Eclipse Indigo/Juno/Kepler/Luna/Mars workspace ![](https://cs-challenge.s3-ap-southeast-1.amazonaws.com/4281a2523dc3b47813316b0400549a6295a55f05.png) 
  * Click "Next"
  * Accept license
  * Click "Finish"
