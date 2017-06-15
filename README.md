@@ -25,7 +25,7 @@ Java version:
 
 <h2>Installation</h2>
 Automatic installation - Drag & Drop (Indigo, Juno, Kepler, Luna, Mars)
- * Drag and drop following icon into a running Eclipse Indigo/Juno/Kepler/Luna/Mars workspace [![Drag and drop into a running Eclipse Indigo/Juno/Kepler/Luna/Mars workspace to install Eclipse XPath evaluation plugin](http://marketplace.eclipse.org/misc/installbutton.png)][http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=148833]
+ * Drag and drop following icon into a running Eclipse Indigo/Juno/Kepler/Luna/Mars workspace ![Alt text](http://marketplace.eclipse.org/misc/installbutton.png "Optional title") 
  * Click "Next"
  * Accept license
  * Click "Finish"
