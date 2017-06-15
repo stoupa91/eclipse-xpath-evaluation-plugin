@@ -25,7 +25,7 @@ Java version:
 
 <h2>Installation</h2>
 
-Automatic installation - Drag & Drop (Indigo, Juno, Kepler, Luna, Mars)
+**Automatic installation - Drag & Drop (Indigo, Juno, Kepler, Luna, Mars)**
  * Drag and drop following icon into a running Eclipse Indigo/Juno/Kepler/Luna/Mars workspace 
  * Click "Next"
  * Accept license
@@ -33,7 +33,7 @@ Automatic installation - Drag & Drop (Indigo, Juno, Kepler, Luna, Mars)
  * You might be warned that you are installing unsigned content. If you are OK with it, click "OK" to proceed.
  * At the end of installation process you will be asked to restart Eclipse, click on "Restart now" 
 
-Automatic installation from within Eclipse Marketplace (Helios, Indigo, Juno, Kepler, Luna, Mars)
+**Automatic installation from within Eclipse Marketplace (Helios, Indigo, Juno, Kepler, Luna, Mars)**
  * Go to Help -> Eclipse Marketplace
  * Type into the search box "xpath", select "Tools" in the market combo box and/or "XML" in the categories combo box to narrow down the results and click "Go"
  * One of the results should appear "Eclipse XPath evaluation plugin", click on "Install" button next to it
@@ -43,7 +43,7 @@ Automatic installation from within Eclipse Marketplace (Helios, Indigo, Juno, Ke
  * You might be warned that you are installing unsigned content. If you are OK with it, click "OK" to proceed.
  * At the end of installation process you will be asked to restart Eclipse, click on "Restart now" 
 
-Manual installation from within Eclipse (Galileo, Helios, Indigo, Juno, Kepler, Luna, Mars)
+**Manual installation from within Eclipse (Galileo, Helios, Indigo, Juno, Kepler, Luna, Mars)**
  * Go to Help -> Install New Software
  * Add repository ("Add.." button)
  * Fill in Name as "XPath" and Location as "https://raw.githubusercontent.com/stoupa91/eclipse-xpath-evaluation-plugin/master/eclipse-xpath-evaluation-plugin-update-site/"
@@ -54,7 +54,7 @@ Manual installation from within Eclipse (Galileo, Helios, Indigo, Juno, Kepler, 
  * You might be warned that you are installing unsigned content. If you are OK with it, click "OK" to proceed.
  * At the end of installation process you will be asked to restart Eclipse, click on "Restart now" 
 
-Manual installation from within Eclipse (Ganymede)
+**Manual installation from within Eclipse (Ganymede)**
  * Go to Help -> Software Updates
  * Click "Add Site.."
  * Fill in Location as "https://raw.githubusercontent.com/stoupa91/eclipse-xpath-evaluation-plugin/master/eclipse-xpath-evaluation-plugin-update-site/"
@@ -65,7 +65,7 @@ Manual installation from within Eclipse (Ganymede)
  * You might be warned that you are installing unsigned content. If you are OK with it, click "OK" to proceed.
  * At the end of installation process you will be asked to restart Eclipse, click on "Restart now" 
 
-Manual installation (Ganymede, Galileo, Helios)
+**Manual installation (Ganymede, Galileo, Helios)**
  * Download provided zip file with the most recent version of the plug-in implementation from "https://github.com/stoupa91/eclipse-xpath-evaluation-plugin/tree/master/eclipse-xpath-evaluation-plugin-update-site/archive"
  * Extract the zip file into the home directory of your eclipse installation
  * Launch Eclipse IDE
