@@ -24,8 +24,9 @@ Java version:
  * 1.5 (up to plugin version 1.3.0)
 
 <h2>Installation</h2>
+
 Automatic installation - Drag & Drop (Indigo, Juno, Kepler, Luna, Mars)
- * Drag and drop following icon into a running Eclipse Indigo/Juno/Kepler/Luna/Mars workspace ![Image of Yaktocat](icons/Diagram.png) 
+ * Drag and drop following icon into a running Eclipse Indigo/Juno/Kepler/Luna/Mars workspace 
  * Click "Next"
  * Accept license
  * Click "Finish"
