@@ -70,6 +70,14 @@ Java version:
  * Extract the zip file into the home directory of your eclipse installation
  * Launch Eclipse IDE
 
+<h2>Post-installation tips</h2>
+
+If you experience any issue related either to the plugin's GUI or your eclipse installation in general like tooltips displayed as <a href="https://github.com/stoupa91/eclipse-xpath-evaluation-plugin/issues/6">black bubbles</a> or any distortion of the icons you may want to put following two lines into your eclipse.ini file and restart your eclipse:
+<pre>
+--launcher.GTK_version
+2
+</pre>
+
 <h2>Usage</h2>
 
 Open XPath view (Indigo, Juno, Kepler, Luna, Mars)
