@@ -1,4 +1,4 @@
-#  Eclipse XPath evaluation plugin
+<h1> <img src="eclipse-xpath-evaluation-plugin/icons/Diagram.png" alt="Logo" width="32" height="32" /> Eclipse XPath evaluation plugin</h1>
 
 This plugin provides a new view in an eclipse perspective and enables the user to evaluate XPath expressions against the active text editor containing XML.
 
