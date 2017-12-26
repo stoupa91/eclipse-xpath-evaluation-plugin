@@ -3,5 +3,5 @@
    <description name="Eclipse XPath evaluation - update site" url="https://raw.githubusercontent.com/stoupa91/eclipse-xpath-evaluation-plugin/master/eclipse-xpath-evaluation-plugin-update-site/">
       Update site for Eclipse XPath evaluation
    </description>
-   <feature url="features/eu.musoft.eclipse.xpath.evaluation.plugin_1.4.4.201511010953.jar" id="eu.musoft.eclipse.xpath.evaluation.plugin" version="1.4.4.201511010953"/>
+   <feature url="features/eu.musoft.eclipse.xpath.evaluation.plugin_1.4.5.201712270004.jar" id="eu.musoft.eclipse.xpath.evaluation.plugin" version="1.4.5.201712270004"/>
 </site>
