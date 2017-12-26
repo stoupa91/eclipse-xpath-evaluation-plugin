@@ -35,6 +35,7 @@ import java.util.List;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
+import eu.musoft.eclipse.xpath.evaluation.plugin.views.namespaces.Namespace;
 import net.sf.saxon.s9api.DocumentBuilder;
 import net.sf.saxon.s9api.Processor;
 import net.sf.saxon.s9api.SaxonApiException;
@@ -48,7 +49,6 @@ import net.sf.saxon.s9api.XdmNode;
 import net.sf.saxon.s9api.XdmValue;
 import net.sf.saxon.s9api.XsltExecutable;
 import net.sf.saxon.s9api.XsltTransformer;
-import eu.musoft.eclipse.xpath.evaluation.plugin.views.namespaces.Namespace;
 
 /**
  * This class performs evaluation of XPath expression against an XML document.
@@ -143,7 +143,7 @@ public class XPathEvaluator {
 	public static String transformResult(XdmValue xdm, boolean isPrettyPrint) throws Exception {
 		Activator.logInfo("Transforming result");
 
-		boolean isAtomicValue = xdm instanceof XdmAtomicValue;
+		boolean isAtomicValue = xdm instanceof XdmAtomicValue || containsAtomicValue(xdm);
 		Activator.logInfo("Result atomic value: " + isAtomicValue);
 		
 		if (!isAtomicValue && isPrettyPrint && isPrettyPrintEnabled) {
@@ -172,6 +172,17 @@ public class XPathEvaluator {
 		}
 
 		return result.toString();
+	}
+
+	private static boolean containsAtomicValue(XdmValue xdm) {
+		if (xdm != null) {
+			for (XdmItem item: xdm) {
+				if (item instanceof XdmAtomicValue) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 }
