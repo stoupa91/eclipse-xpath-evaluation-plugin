@@ -10,8 +10,7 @@ Features:
  * Pretty print
 
 Supported Eclipse versions:
- * Oxygen / 4.8+
- * Photon / 4.7+
+ * Oxygen / 4.7+
  * Neon / 4.6+
  * Mars / 4.5+
  * Luna / 4.4+
@@ -28,15 +27,15 @@ Java version:
 
 <h2>Installation</h2>
 
-**Automatic installation - Drag & Drop (Indigo, Juno, Kepler, Luna, Mars, Neon, Photon, Oxygen)**
- * Drag and drop following icon [![Drag to your running Eclipse* workspace. *Requires Eclipse Marketplace Client](http://marketplace.eclipse.org/sites/all/themes/solstice/public/images/marketplace/btn-install.png)](http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=148833 "Drag to your running Eclipse* workspace. *Requires Eclipse Marketplace Client") into a running Eclipse Indigo/Juno/Kepler/Luna/Mars/Neon/Photon/Oxygen workspace 
+**Automatic installation - Drag & Drop (Indigo, Juno, Kepler, Luna, Mars, Neon, Oxygen)**
+ * Drag and drop following icon [![Drag to your running Eclipse* workspace. *Requires Eclipse Marketplace Client](http://marketplace.eclipse.org/sites/all/themes/solstice/public/images/marketplace/btn-install.png)](http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=148833 "Drag to your running Eclipse* workspace. *Requires Eclipse Marketplace Client") into a running Eclipse Indigo/Juno/Kepler/Luna/Mars/Neon/Oxygen workspace 
  * Click "Next"
  * Accept license
  * Click "Finish"
  * You might be warned that you are installing unsigned content. If you are OK with it, click "OK" to proceed.
  * At the end of installation process you will be asked to restart Eclipse, click on "Restart now" 
 
-**Automatic installation from within Eclipse Marketplace (Helios, Indigo, Juno, Kepler, Luna, Mars, Neon, Photon, Oxygen)**
+**Automatic installation from within Eclipse Marketplace (Helios, Indigo, Juno, Kepler, Luna, Mars, Neon, Oxygen)**
  * Go to Help -> Eclipse Marketplace
  * Type into the search box "xpath", select "Tools" in the market combo box and/or "XML" in the categories combo box to narrow down the results and click "Go"
  * One of the results should appear "Eclipse XPath evaluation plugin", click on "Install" button next to it
@@ -46,7 +45,7 @@ Java version:
  * You might be warned that you are installing unsigned content. If you are OK with it, click "OK" to proceed.
  * At the end of installation process you will be asked to restart Eclipse, click on "Restart now" 
 
-**Manual installation from within Eclipse (Galileo, Helios, Indigo, Juno, Kepler, Luna, Mars, Neon, Photon, Oxygen)**
+**Manual installation from within Eclipse (Galileo, Helios, Indigo, Juno, Kepler, Luna, Mars, Neon, Oxygen)**
  * Go to Help -> Install New Software
  * Add repository ("Add.." button)
  * Fill in Name as "XPath" and Location as "https://raw.githubusercontent.com/stoupa91/eclipse-xpath-evaluation-plugin/master/eclipse-xpath-evaluation-plugin-update-site/"
@@ -83,7 +82,7 @@ If you experience any issue related to either the plugin's GUI or your eclipse i
 
 <h2>Usage</h2>
 
-Open XPath view (Indigo, Juno, Kepler, Luna, Mars, Neon, Photon, Oxygen)
+Open XPath view (Indigo, Juno, Kepler, Luna, Mars, Neon, Oxygen)
  * Go to Window -> Show View -> Other -> XML -> XPath, whereas new view, for executing the XPath expressions, will be shown 
 
 Open XPath view (Ganymede, Galileo, Helios)
