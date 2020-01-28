@@ -10,9 +10,9 @@ Features:
  * Pretty print
 
 Supported Eclipse versions:
- * 2019-03 / 4.11+
- * 2018-12 / 4.10+
- * 2018-09 / 4.9+
+ * 2020-03 / 4.15
+ * 2019-03,06,09,12 / 4.11, 4.12, 4.13, 4.14
+ * 2018-09,12 / 4.9+, 4.10+
  * Photon / 4.8+
  * Oxygen / 4.7+
  * Neon / 4.6+
@@ -31,7 +31,7 @@ Java version:
 
 <h2>Installation</h2>
 
-**Automatic installation - Drag & Drop (Indigo, Juno, Kepler, Luna, Mars, Neon, Oxygen, Photon)**
+**Automatic installation - Drag & Drop (Indigo, Juno, Kepler, Luna, Mars, Neon, Oxygen, Photon, 2018+, 2019+, 2020+)**
  * Drag and drop following icon [![Drag to your running Eclipse* workspace. *Requires Eclipse Marketplace Client](http://marketplace.eclipse.org/sites/all/themes/solstice/public/images/marketplace/btn-install.png)](http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=148833 "Drag to your running Eclipse* workspace. *Requires Eclipse Marketplace Client") into a running Eclipse Indigo/Juno/Kepler/Luna/Mars/Neon/Oxygen/Photon workspace 
  * Click "Next"
  * Accept license
@@ -39,7 +39,7 @@ Java version:
  * You might be warned that you are installing unsigned content. If you are OK with it, click "OK" to proceed.
  * At the end of installation process you will be asked to restart Eclipse, click on "Restart now" 
 
-**Automatic installation from within Eclipse Marketplace (Helios, Indigo, Juno, Kepler, Luna, Mars, Neon, Oxygen, Photon)**
+**Automatic installation from within Eclipse Marketplace (Helios, Indigo, Juno, Kepler, Luna, Mars, Neon, Oxygen, Photon, 2018+, 2019+, 2020+)**
  * Go to Help -> Eclipse Marketplace
  * Type into the search box "xpath", select "Tools" in the market combo box and/or "XML" in the categories combo box to narrow down the results and click "Go"
  * One of the results should appear "Eclipse XPath evaluation plugin", click on "Install" button next to it
@@ -49,7 +49,7 @@ Java version:
  * You might be warned that you are installing unsigned content. If you are OK with it, click "OK" to proceed.
  * At the end of installation process you will be asked to restart Eclipse, click on "Restart now" 
 
-**Manual installation from within Eclipse (Galileo, Helios, Indigo, Juno, Kepler, Luna, Mars, Neon, Oxygen, Photon)**
+**Manual installation from within Eclipse (Galileo, Helios, Indigo, Juno, Kepler, Luna, Mars, Neon, Oxygen, Photon, 2018+, 2019+, 2020+)**
  * Go to Help -> Install New Software
  * Add repository ("Add.." button)
  * Fill in Name as "XPath" and Location as "https://raw.githubusercontent.com/stoupa91/eclipse-xpath-evaluation-plugin/master/eclipse-xpath-evaluation-plugin-update-site/"
